@@ -30,6 +30,7 @@ import AdminPayoutDetail from './pages/admin/AdminPayoutDetail';
 import AdminSettings              from './pages/admin/AdminSettings';
 import AdminPaymentGateways        from './pages/admin/AdminPaymentGateways';
 import AdminReports                from './pages/admin/AdminReports';
+import AdminBanners                from './pages/admin/AdminBanners';
 import AdminVendorPerformance      from './pages/admin/AdminVendorPerformance';
 import AdminTransactionHistory     from './pages/admin/AdminTransactionHistory';
 import AdminProfile                from './pages/admin/AdminProfile';
@@ -68,6 +69,7 @@ import ProductDetail     from './pages/shop/ProductDetail';
 import CartPage          from './pages/shop/CartPage';
 import CheckoutPage      from './pages/shop/CheckoutPage';
 import OrderConfirmation from './pages/orders/OrderConfirmation';
+import CustomerDashboard  from './pages/customer/CustomerDashboard';
 
 // ── Route guards ──────────────────────────────────────────────────────────────
 
@@ -176,6 +178,7 @@ function AppRoutes() {
       <Route path="/shop"               element={<ShopPage />} />
       <Route path="/shop/product/:id"   element={<ProductDetail />} />
       <Route path="/cart"               element={<ProtectedRoute allow={['customer']}><CartPage /></ProtectedRoute>} />
+      <Route path="/dashboard"          element={<ProtectedRoute allow={['customer']}><CustomerDashboard /></ProtectedRoute>} />
       <Route path="/checkout"           element={<ProtectedRoute allow={['customer']}><CheckoutPage /></ProtectedRoute>} />
       <Route path="/order-confirmation/:id" element={<ProtectedRoute allow={['customer']}><OrderConfirmation /></ProtectedRoute>} />
       <Route path="/orders/:id"         element={<ProtectedRoute allow={['customer']}><OrderConfirmation /></ProtectedRoute>} />
@@ -242,6 +245,8 @@ function AppRoutes() {
         element={<ProtectedRoute allow={['admin','sub_admin']}><AdminAuditLog /></ProtectedRoute>} />
       <Route path="/admin/settings"
         element={<ProtectedRoute allow={['admin','sub_admin']}><AdminSettings /></ProtectedRoute>} />
+      <Route path="/admin/banners"
+        element={<ProtectedRoute allow={['admin','sub_admin']}><AdminBanners /></ProtectedRoute>} />
       <Route path="/admin/settings/payment-gateways"
         element={<ProtectedRoute allow={['admin','sub_admin']}><AdminPaymentGateways /></ProtectedRoute>} />
       <Route path="/admin/settings/admin-management"

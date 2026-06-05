@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthLayout from '../../components/auth/AuthLayout';
 import { authApi } from '../../services/api';
@@ -7,6 +7,12 @@ export default function CustomerRegister() {
   const navigate  = useNavigate();
   const location  = useLocation();
   const role      = location.state?.role || 'customer';
+
+  useEffect(() => {
+    if (role === 'vendor') {
+      navigate('/vendor/register');
+    }
+  }, [role, navigate]);
 
   const [form, setForm] = useState({
     first_name: '', last_name: '', email: '', password: '', password_confirm: '',

@@ -9,6 +9,7 @@
     "start": "node src/index.js",
     "migrate": "node src/database/migrate.js",
     "migrate:seed": "node src/database/migrate.js --seed",
+    "bypass-activation": "node scripts/bypass-activation.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

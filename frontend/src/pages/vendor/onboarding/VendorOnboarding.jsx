@@ -163,18 +163,8 @@ export default function VendorOnboarding() {
                 <label className="block text-navy text-sm font-medium mb-1.5">
                   What country is your business based?
                 </label>
-                <SelectInput
-                  value={data.country}
-                  onChange={e => update('country', e.target.value)}
-                >
+                <SelectInput value={data.country} disabled>
                   <option value="Nigeria">Nigeria</option>
-                  <option value="Ghana">Ghana</option>
-                  <option value="Kenya">Kenya</option>
-                  <option value="South Africa">South Africa</option>
-                  <option value="United Kingdom">United Kingdom</option>
-                  <option value="United States">United States</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Other">Other</option>
                 </SelectInput>
                 {errors.country && <FieldError msg={errors.country} />}
               </div>

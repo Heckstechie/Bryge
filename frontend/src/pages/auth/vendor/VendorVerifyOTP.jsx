@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { authApi } from '../../../services/api';
 import { BrygeLogo, NavyButton, OTPBoxes, EnvelopeIllustration } from './VendorShared';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function VendorVerifyOTP() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { afterVerify } = useAuth();
 
   const email = location.state?.email || '';
 
@@ -21,13 +23,12 @@ export default function VendorVerifyOTP() {
     setLoading(true);
     setError('');
     try {
-      await authApi.verifyEmail({ email, code });
-      // Don't attempt auto-login here — just redirect to vendor login
-      // with a success notice. VendorLogin handles status-based routing.
-      navigate('/vendor/login', {
-        replace: true,
-        state: { notice: '✓ Email verified! Please log in to continue.', email },
-      });
+      // Verify code and sign the user in (receive tokens + user)
+      const { data } = await authApi.verifyEmail({ email, code });
+      // Set tokens and user in context so protected routes work
+      afterVerify(data.user, data.access_token, data.refresh_token);
+      // Redirect vendor to the onboarding start (legal name / country)
+      navigate('/vendor/onboarding', { replace: true, state: { email } });
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid code. Please try again.');
     } finally {

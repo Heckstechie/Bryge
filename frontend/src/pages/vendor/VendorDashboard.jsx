@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VendorShell from '../../components/vendor/VendorShell';
 import api from '../../services/api';
+import { WelcomeModal } from '../auth/vendor/VendorShared';
 
 function fmtDate(iso) {
   const d = new Date(iso);
@@ -19,6 +20,7 @@ export default function VendorDashboard() {
   const navigate = useNavigate();
   const [data, setData]       = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
     api.get('/vendor/dashboard')
@@ -26,6 +28,15 @@ export default function VendorDashboard() {
       .catch(() => navigate('/vendor/login'))
       .finally(() => setLoading(false));
   }, [navigate]);
+
+  useEffect(() => {
+    if (!data) return;
+    const vendor = data.vendor;
+    // Show welcome modal for active vendors who are not yet verified (test mode)
+    if (vendor && vendor.status === 'active' && !vendor.verified) {
+      setShowWelcome(true);
+    }
+  }, [data]);
 
   if (loading) {
     return (
@@ -61,6 +72,10 @@ export default function VendorDashboard() {
       <VendorShell vendor={vendor} wallet={wallet}>
         {statusContent}
       </VendorShell>
+
+      {showWelcome && (
+        <WelcomeModal onActivate={() => { setShowWelcome(false); navigate('/vendor/activate'); }} />
+      )}
 
       {/* ── Low-stock sticky bar ── */}
       {low_stock_count > 0 && (

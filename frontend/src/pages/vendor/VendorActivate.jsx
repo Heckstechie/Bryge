@@ -165,6 +165,8 @@ export default function VendorActivate() {
 
   // ── Success screen ───────────────────────────────────────────────────────────
   if (submitted) {
+    // Auto-redirect to dashboard after a short confirmation pause
+    setTimeout(() => navigate('/vendor/dashboard'), 1200);
     return (
       <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-6 text-center">
         <div className="w-20 h-20 bg-[#3D6B4F]/10 rounded-full flex items-center justify-center mb-6">
@@ -178,11 +180,7 @@ export default function VendorActivate() {
           Your compliance documents have been submitted for review.
           We'll notify you once your account is activated — usually within 2 business days.
         </p>
-        <button onClick={() => navigate('/vendor/dashboard')}
-          className="mt-8 px-8 py-3 bg-navy text-white font-semibold rounded-full
-                     hover:bg-navy-700 transition-all text-sm">
-          Go to Dashboard
-        </button>
+        <p className="text-sm text-[#8A9BB0] mt-6">Redirecting to your dashboard…</p>
       </div>
     );
   }

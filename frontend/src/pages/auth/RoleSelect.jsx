@@ -5,7 +5,11 @@ export default function RoleSelect() {
   const navigate = useNavigate();
 
   function pick(role) {
-    navigate('/register/details', { state: { role } });
+    if (role === 'vendor') {
+      navigate('/vendor/register');
+    } else {
+      navigate('/register/details', { state: { role } });
+    }
   }
 
   return (
