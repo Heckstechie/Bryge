@@ -33,6 +33,12 @@ export default function CustomerDashboard() {
           </div>
         </div>
 
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          <a href="/orders" className="rounded-3xl bg-white p-4 text-center text-sm font-semibold text-navy shadow-sm hover:shadow-md transition">My Orders</a>
+          <a href="/notifications" className="rounded-3xl bg-white p-4 text-center text-sm font-semibold text-navy shadow-sm hover:shadow-md transition">Notifications</a>
+          <a href="/customer/settings" className="rounded-3xl bg-white p-4 text-center text-sm font-semibold text-navy shadow-sm hover:shadow-md transition">Account</a>
+        </div>
+
         {/* Banner */}
         <div className="mb-6">
           {loading ? (

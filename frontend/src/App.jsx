@@ -69,7 +69,17 @@ import ProductDetail     from './pages/shop/ProductDetail';
 import CartPage          from './pages/shop/CartPage';
 import CheckoutPage      from './pages/shop/CheckoutPage';
 import OrderConfirmation from './pages/orders/OrderConfirmation';
+import MyOrders from './pages/orders/MyOrders';
+import OrderDetail from './pages/orders/OrderDetail';
+import LeaveReview from './pages/orders/LeaveReview';
 import CustomerDashboard  from './pages/customer/CustomerDashboard';
+import CustomerNotifications from './pages/customer/CustomerNotifications';
+import CustomerSettings from './pages/customer/CustomerSettings';
+import CustomerPersonalInfo from './pages/customer/CustomerPersonalInfo';
+import CustomerAddresses from './pages/customer/CustomerAddresses';
+import CustomerNotificationPreferences from './pages/customer/CustomerNotificationPreferences';
+import CustomerReviews from './pages/customer/CustomerReviews';
+import CustomerDisputeHistory from './pages/customer/CustomerDisputeHistory';
 
 // ── Route guards ──────────────────────────────────────────────────────────────
 
@@ -181,7 +191,16 @@ function AppRoutes() {
       <Route path="/dashboard"          element={<ProtectedRoute allow={['customer']}><CustomerDashboard /></ProtectedRoute>} />
       <Route path="/checkout"           element={<ProtectedRoute allow={['customer']}><CheckoutPage /></ProtectedRoute>} />
       <Route path="/order-confirmation/:id" element={<ProtectedRoute allow={['customer']}><OrderConfirmation /></ProtectedRoute>} />
-      <Route path="/orders/:id"         element={<ProtectedRoute allow={['customer']}><OrderConfirmation /></ProtectedRoute>} />
+      <Route path="/orders" element={<ProtectedRoute allow={['customer']}><MyOrders /></ProtectedRoute>} />
+      <Route path="/orders/:id" element={<ProtectedRoute allow={['customer']}><OrderDetail /></ProtectedRoute>} />
+      <Route path="/orders/:id/review" element={<ProtectedRoute allow={['customer']}><LeaveReview /></ProtectedRoute>} />
+      <Route path="/notifications" element={<ProtectedRoute allow={['customer']}><CustomerNotifications /></ProtectedRoute>} />
+      <Route path="/customer/settings" element={<ProtectedRoute allow={['customer']}><CustomerSettings /></ProtectedRoute>} />
+      <Route path="/customer/settings/personal" element={<ProtectedRoute allow={['customer']}><CustomerPersonalInfo /></ProtectedRoute>} />
+      <Route path="/customer/settings/addresses" element={<ProtectedRoute allow={['customer']}><CustomerAddresses /></ProtectedRoute>} />
+      <Route path="/customer/settings/notifications" element={<ProtectedRoute allow={['customer']}><CustomerNotificationPreferences /></ProtectedRoute>} />
+      <Route path="/customer/settings/reviews" element={<ProtectedRoute allow={['customer']}><CustomerReviews /></ProtectedRoute>} />
+      <Route path="/customer/settings/disputes" element={<ProtectedRoute allow={['customer']}><CustomerDisputeHistory /></ProtectedRoute>} />
 
       {/* ── Admin ── */}
       <Route path="/admin/login"
