@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const SECTIONS = [
   { title: 'Personal Information', description: 'Update your name and address details', path: '/customer/settings/personal' },
@@ -10,6 +11,7 @@ const SECTIONS = [
 
 export default function CustomerSettings() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   return (
     <div className="min-h-screen bg-cream px-4 py-8">
@@ -36,6 +38,30 @@ export default function CustomerSettings() {
               </div>
             </button>
           ))}
+          {SECTIONS.map((item) => (
+            <button key={item.title}
+              onClick={() => navigate(item.path)}
+              className="w-full text-left bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-sm font-semibold text-navy">{item.title}</div>
+                  <div className="text-xs text-[#8A9BB0] mt-1">{item.description}</div>
+                </div>
+                <span className="text-[#8A9BB0]">›</span>
+              </div>
+            </button>
+          ))}
+
+          <button
+            onClick={async () => {
+              await logout();
+              navigate('/login', { replace: true });
+            }}
+            className="w-full mt-4 bg-[#C8603A] text-white rounded-3xl px-4 py-4 font-semibold hover:bg-[#b5523e] transition-colors"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
