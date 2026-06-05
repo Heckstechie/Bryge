@@ -65,7 +65,7 @@ export default function VerifyEmail({ vendorFlow = false }) {
     try {
       const { data } = await authApi.verifyEmail({ email, code });
       afterVerify(data.user, data.access_token, data.refresh_token);
-      navigate(vendorFlow ? '/vendor/dashboard' : '/shop');
+      navigate(vendorFlow ? '/vendor/dashboard' : '/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid code. Please try again.');
       setDigits(Array(OTP_LENGTH).fill(''));

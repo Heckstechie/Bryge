@@ -28,7 +28,7 @@ export default function Login() {
         // Vendors should use /vendor/login, but if they land here route them correctly
         navigate(user.vendor_status === 'active' ? '/vendor/dashboard' : '/vendor/activate');
       } else {
-        navigate('/shop');
+        navigate('/dashboard');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');

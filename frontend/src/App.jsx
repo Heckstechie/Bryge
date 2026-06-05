@@ -106,7 +106,7 @@ function RoleRedirect({ role, user }) {
       ? <Navigate to="/vendor/dashboard" replace />
       : <Navigate to="/vendor/activate"  replace />;
   }
-  return <Navigate to="/shop" replace />;   // customers
+  return <Navigate to="/dashboard" replace />;   // customers
 }
 
 // Admin-specific guest guard — redirects to /admin/login instead of /login
