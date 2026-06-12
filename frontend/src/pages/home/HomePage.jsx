@@ -42,8 +42,8 @@ function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="text-white font-bold text-2xl tracking-tight">
-          Bryge
+        <Link to="/">
+          <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="w-28 h-auto" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -608,7 +608,7 @@ function Footer() {
     <footer className="bg-dark-navy py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p className="text-white font-bold text-xl mb-1">Bryge</p>
+          <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="w-24 h-auto mb-1" />
           <p className="text-white/40 text-sm">Cross-border, made simple.</p>
         </div>
 

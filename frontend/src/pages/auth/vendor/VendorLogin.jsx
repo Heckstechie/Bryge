@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import { authApi } from '../../../services/api';
 import { BrygeLogo, NavyButton, PillInput, ToggleEye } from './VendorShared';
 
 export default function VendorLogin() {
-  const { login }   = useAuth();
-  const navigate    = useNavigate();
+  const { afterVerify } = useAuth();
   const { state }   = useLocation();
   const [form, setForm]       = useState({ email: '', password: '' });
   const [showPw, setShowPw]   = useState(false);
@@ -22,18 +22,13 @@ export default function VendorLogin() {
     setLoading(true);
     setError('');
     try {
-      const user = await login(form.email.trim().toLowerCase(), form.password);
-      if (user.role !== 'vendor') {
+      const { data } = await authApi.login({ email: form.email.trim().toLowerCase(), password: form.password });
+      if (data.user.role !== 'vendor') {
         setError('This account is not registered as a vendor.');
         return;
       }
-      // Route based on approval status
-      if (user.vendor_status === 'active') {
-        navigate('/vendor/dashboard');
-      } else {
-        // pending / rejected / suspended → onboarding wizard or status screen
-        navigate('/vendor/activate');
-      }
+      afterVerify(data.user, data.access_token, data.refresh_token);
+      window.location.href = data.user.vendor_status === 'active' ? '/vendor/dashboard' : '/vendor/activate';
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid email or password.');
     } finally {

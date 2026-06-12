@@ -29,8 +29,12 @@ function layout(content) {
                                   overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)">
         <!-- Header -->
         <tr>
-          <td style="background:#1B2F5C;padding:28px 36px">
-            <span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px">
+          <td style="background:#1B2F5C;padding:24px 36px">
+            <!-- Replace LOGO_URL with the Cloudinary URL of logo-wordmark-cream.png after upload -->
+            <img src="${process.env.LOGO_URL || ''}" alt="Bryge"
+                 style="height:28px;width:auto;display:${process.env.LOGO_URL ? 'block' : 'none'}" />
+            <span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;
+                          display:${process.env.LOGO_URL ? 'none' : 'inline'}">
               Bryge
             </span>
           </td>

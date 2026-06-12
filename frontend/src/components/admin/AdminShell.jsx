@@ -52,11 +52,8 @@ export default function AdminShell({ children, title }) {
       <aside className="w-[210px] flex-shrink-0 bg-[#0F1A2B] flex flex-col">
         {/* Logo */}
         <div className="px-6 py-5 border-b border-white/8">
-          <div className="flex items-baseline gap-0.5">
-            <span className="text-white font-bold text-xl tracking-wide">bryge</span>
-            <span className="text-[#D45B3E] font-bold text-xl">.</span>
-          </div>
-          <p className="text-[10px] text-white/30 mt-0.5 uppercase tracking-widest">Admin Panel</p>
+          <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="w-[130px] h-auto" />
+          <p className="text-[10px] text-white/30 mt-1.5 uppercase tracking-widest">Admin Panel</p>
         </div>
 
         {/* Nav */}

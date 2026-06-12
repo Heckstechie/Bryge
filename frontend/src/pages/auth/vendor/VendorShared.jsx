@@ -8,9 +8,7 @@
 // ─── Logo ────────────────────────────────────────────────────────────────────
 export function BrygeLogo() {
   return (
-    <span className="text-2xl font-bold text-navy tracking-tight select-none">
-      Bryge
-    </span>
+    <img src="/brand/logo-full-black.png" alt="Bryge" className="w-36 h-auto" />
   );
 }
 

@@ -15,8 +15,17 @@ export default function VerifyEmail({ vendorFlow = false }) {
   const [digits, setDigits]     = useState(Array(OTP_LENGTH).fill(''));
   const [error, setError]       = useState('');
   const [loading, setLoading]   = useState(false);
-  const [resendCd, setResendCd] = useState(0);  // countdown seconds
+  const [resendCd, setResendCd] = useState(0);
+  const [postVerify, setPostVerify] = useState(false);
   const inputs = useRef([]);
+
+  // Navigate after tokens are saved — hard reload ensures AuthContext
+  // re-reads the token from localStorage without any state race condition.
+  useEffect(() => {
+    if (postVerify) {
+      window.location.href = vendorFlow ? '/vendor/dashboard' : '/dashboard';
+    }
+  }, [postVerify, vendorFlow]);
 
   // Redirect if arrived without email
   useEffect(() => {
@@ -65,7 +74,7 @@ export default function VerifyEmail({ vendorFlow = false }) {
     try {
       const { data } = await authApi.verifyEmail({ email, code });
       afterVerify(data.user, data.access_token, data.refresh_token);
-      navigate(vendorFlow ? '/vendor/dashboard' : '/dashboard');
+      setPostVerify(true);
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid code. Please try again.');
       setDigits(Array(OTP_LENGTH).fill(''));

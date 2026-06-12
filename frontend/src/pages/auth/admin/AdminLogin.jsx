@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { flushSync } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { authApi } from '../../../services/api';
@@ -26,8 +27,12 @@ export default function AdminLogin() {
         email:    form.email.trim().toLowerCase(),
         password: form.password,
       });
-      // Store tokens + hydrate context via afterVerify (same as email verification flow)
-      afterVerify(data.user, data.access_token, data.refresh_token);
+      // flushSync ensures setUser is committed before navigate() fires.
+      // Without it React 18 batches the state update and ProtectedRoute
+      // sees user=null on the first render, redirecting to /login.
+      flushSync(() => {
+        afterVerify(data.user, data.access_token, data.refresh_token);
+      });
       navigate('/admin/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid email or password.');
@@ -39,6 +44,11 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-[#C8DCFA] flex items-center justify-center p-6">
       <div className="bg-white rounded-3xl shadow-sm w-full max-w-xl px-16 py-14">
+
+        {/* Logo */}
+        <div className="flex justify-center mb-7">
+          <img src="/brand/logo-full-black.png" alt="Bryge" className="w-44 h-auto mx-auto" />
+        </div>
 
         {/* Title */}
         <div className="text-center mb-9">

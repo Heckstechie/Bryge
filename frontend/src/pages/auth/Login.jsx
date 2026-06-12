@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthLayout from '../../components/auth/AuthLayout';
 import { useAuth } from '../../context/AuthContext';
+import { authApi } from '../../services/api';
 
 export default function Login() {
-  const { login }   = useAuth();
-  const navigate    = useNavigate();
+  const { afterVerify } = useAuth();
   const [form, setForm]     = useState({ email: '', password: '' });
   const [error, setError]   = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,14 +21,15 @@ export default function Login() {
     setLoading(true);
     setError('');
     try {
-      const user = await login(form.email, form.password);
-      if (user.role === 'admin' || user.role === 'sub_admin') {
-        navigate('/admin/dashboard');
-      } else if (user.role === 'vendor') {
-        // Vendors should use /vendor/login, but if they land here route them correctly
-        navigate(user.vendor_status === 'active' ? '/vendor/dashboard' : '/vendor/activate');
+      const { data } = await authApi.login({ email: form.email, password: form.password });
+      afterVerify(data.user, data.access_token, data.refresh_token);
+      const role = data.user.role;
+      if (role === 'admin' || role === 'sub_admin') {
+        window.location.href = '/admin/dashboard';
+      } else if (role === 'vendor') {
+        window.location.href = data.user.vendor_status === 'active' ? '/vendor/dashboard' : '/vendor/activate';
       } else {
-        navigate('/dashboard');
+        window.location.href = '/dashboard';
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');

@@ -7,7 +7,7 @@ async function getProfile(req, res, next) {
               COALESCE(cp.first_name, '') AS first_name,
               COALESCE(cp.last_name, '') AS last_name,
               COALESCE(cp.avatar_url, '') AS avatar_url,
-              COALESCE(cp.date_of_birth, '') AS date_of_birth,
+              cp.date_of_birth,
               COALESCE(cp.country, '') AS country,
               COALESCE(cp.city, '') AS city
        FROM users u

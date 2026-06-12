@@ -14,13 +14,14 @@ function Input({ label, ...props }) {
 export default function CustomerPersonalInfo() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
+  const [loadError, setLoadError] = useState('');
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     let mounted = true;
-    api.get('/customer/profile').then(({ data }) => {
-      if (mounted) setProfile(data.profile);
-    }).catch(() => {}).finally(() => { if (!mounted) return; });
+    api.get('/customer/profile')
+      .then(({ data }) => { if (mounted) setProfile(data.profile); })
+      .catch(() => { if (mounted) setLoadError('Unable to load profile. Please try again.'); });
     return () => { mounted = false; };
   }, []);
 
@@ -30,7 +31,7 @@ export default function CustomerPersonalInfo() {
       await api.patch('/customer/profile', {
         first_name: profile.first_name,
         last_name: profile.last_name,
-        date_of_birth: profile.date_of_birth,
+        date_of_birth: profile.date_of_birth || null,
         country: profile.country,
         city: profile.city,
       });
@@ -40,6 +41,17 @@ export default function CustomerPersonalInfo() {
     } finally {
       setSaving(false);
     }
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-4 px-4">
+        <p className="text-sm text-red-500">{loadError}</p>
+        <button onClick={() => window.location.reload()} className="text-sm text-navy underline">
+          Try again
+        </button>
+      </div>
+    );
   }
 
   if (!profile) {

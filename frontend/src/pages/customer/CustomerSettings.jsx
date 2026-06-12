@@ -38,20 +38,6 @@ export default function CustomerSettings() {
               </div>
             </button>
           ))}
-          {SECTIONS.map((item) => (
-            <button key={item.title}
-              onClick={() => navigate(item.path)}
-              className="w-full text-left bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-sm font-semibold text-navy">{item.title}</div>
-                  <div className="text-xs text-[#8A9BB0] mt-1">{item.description}</div>
-                </div>
-                <span className="text-[#8A9BB0]">›</span>
-              </div>
-            </button>
-          ))}
 
           <button
             onClick={async () => {
