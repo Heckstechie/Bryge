@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 
+// ── Home (public landing page) ────────────────────────────────────────────────
+import HomePage from './pages/home/HomePage';
+
 // ── Customer auth ─────────────────────────────────────────────────────────────
 import Login            from './pages/auth/Login';
 import RegisterLanding  from './pages/auth/RegisterLanding';
@@ -274,8 +277,8 @@ function AppRoutes() {
         element={<ProtectedRoute allow={['admin','sub_admin']}><AdminProfile /></ProtectedRoute>} />
 
       {/* ── Default ── */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
