@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import ShopNavbar from '../../components/layout/ShopNavbar';
+import Footer from '../../components/layout/Footer';
 import api from '../../services/api';
 import { useCart } from '../../context/CartContext';
 
@@ -69,6 +71,8 @@ export default function CartPage() {
   );
 
   return (
+    <>
+    <ShopNavbar />
     <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-6 py-10">
 
@@ -257,5 +261,7 @@ export default function CartPage() {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

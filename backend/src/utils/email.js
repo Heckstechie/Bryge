@@ -1,16 +1,8 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-  host:   'smtp.gmail.com',
-  port:   587,
-  secure: false, // STARTTLS
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM = process.env.EMAIL_FROM || `Bryge <${process.env.GMAIL_USER}>`;
+const FROM = process.env.EMAIL_FROM || 'Bryge <noreply@onboarding.resend.dev>';
 const FE   = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // ── Shared layout wrapper ──────────────────────────────────────────────────────
@@ -101,7 +93,8 @@ function naira(n) {
 
 // ── Core send helper ───────────────────────────────────────────────────────────
 async function send({ to, subject, html }) {
-  await transporter.sendMail({ from: FROM, to, subject, html });
+  const { error } = await resend.emails.send({ from: FROM, to, subject, html });
+  if (error) throw new Error(`Resend error: ${error.message}`);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

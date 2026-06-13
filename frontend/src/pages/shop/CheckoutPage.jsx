@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import ShopNavbar from '../../components/layout/ShopNavbar';
+import Footer from '../../components/layout/Footer';
 import api from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
@@ -88,6 +90,8 @@ export default function CheckoutPage() {
   );
 
   return (
+    <>
+    <ShopNavbar />
     <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-6 py-10">
 
@@ -302,5 +306,7 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

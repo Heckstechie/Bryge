@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import Footer from '../../components/layout/Footer';
 import api from '../../services/api';
 
 // ── Image constants (replace with Cloudinary URLs when brand assets are ready) ─
@@ -598,37 +599,6 @@ function FinalBannerSection() {
         </Link>
       </div>
     </section>
-  );
-}
-
-// ── Footer ────────────────────────────────────────────────────────────────────
-
-function Footer() {
-  return (
-    <footer className="bg-dark-navy py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="w-24 h-auto mb-1" />
-          <p className="text-white/40 text-sm">Cross-border, made simple.</p>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-6 text-sm">
-          {[
-            { label: 'Shop', to: '/shop' },
-            { label: 'Become a Vendor', to: '/vendor/register' },
-            { label: 'Login', to: '/login' },
-          ].map(({ label, to }) => (
-            <Link key={label} to={to} className="text-white/50 hover:text-white transition-colors">
-              {label}
-            </Link>
-          ))}
-        </div>
-
-        <p className="text-white/30 text-sm text-center md:text-right">
-          © {new Date().getFullYear()} Bryge Global Services Limited. All rights reserved.
-        </p>
-      </div>
-    </footer>
   );
 }
 

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import ShopNavbar from '../../components/layout/ShopNavbar';
+import Footer from '../../components/layout/Footer';
 import ProductCard from '../../components/shop/ProductCard';
 import api from '../../services/api';
 import { useCart } from '../../context/CartContext';
@@ -58,6 +60,8 @@ export default function ProductDetail() {
   const maxCount = Math.max(...(rating_distribution.map((r) => Number(r.count)) || [1]));
 
   return (
+    <>
+    <ShopNavbar />
     <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-6 py-6">
 
@@ -284,5 +288,7 @@ export default function ProductDetail() {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

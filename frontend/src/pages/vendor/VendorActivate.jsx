@@ -661,7 +661,7 @@ const REG_STEPS = [
 
 function RegistrationSection({ onBack, onNext }) {
   const [sub, setSub] = useState(1);
-  const [form, setForm] = useState({ nepza: '', tin: '' });
+  const [form, setForm] = useState({ cac_number: '', nafdac_number: '', tin: '' });
   const [regFile, setRegFile] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -669,10 +669,13 @@ function RegistrationSection({ onBack, onNext }) {
 
   function handleNext() {
     if (sub === 1) {
+      const e = {};
+      if (!form.cac_number.trim()) e.cac_number = 'CAC Registration Number is required';
+      if (Object.keys(e).length) { setErrors(e); return; }
       setSub(2); setErrors({});
     } else {
       onNext(
-        { nepza: form.nepza, tin: form.tin },
+        { cac_number: form.cac_number, nafdac_number: form.nafdac_number, tin: form.tin },
         { reg_doc: regFile || null }
       );
     }
@@ -692,13 +695,16 @@ function RegistrationSection({ onBack, onNext }) {
             subtitle="Provide your registered business details so Bryge can verify your business information."
           />
           <div className="flex flex-col gap-5">
-            <Field label="NEPZA Number" optional>
-              <RectInput placeholder="0000"
-                value={form.nepza}
-                onChange={e => upForm('nepza', e.target.value)} />
-              <p className="text-[#A0AAB8] text-xs mt-1 px-1">
-                Required only if operating in a Free Trade Zone.
-              </p>
+            <Field label="CAC Registration Number" error={errors.cac_number}>
+              <RectInput placeholder="RC123456"
+                value={form.cac_number}
+                onChange={e => upForm('cac_number', e.target.value)} />
+            </Field>
+
+            <Field label="NAFDAC Registration Number" optional>
+              <RectInput placeholder="A1-1234"
+                value={form.nafdac_number}
+                onChange={e => upForm('nafdac_number', e.target.value)} />
             </Field>
 
             <Field label="Tax Identification Number (TIN)" error={errors.tin}>

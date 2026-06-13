@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const PRICE_RANGES = [
   { label: '₦0 – ₦5,000',       min: 0,     max: 5000  },
   { label: '₦5,000 – ₦10,000',  min: 5000,  max: 10000 },
@@ -22,7 +24,7 @@ function Stars({ n }) {
   );
 }
 
-export default function FilterSidebar({ categories, filters, onChange, onClear, totalCount }) {
+function FilterContent({ categories, filters, onChange, onClear, totalCount }) {
   const [showAllCats, setShowAllCats] = useState(false);
   const topCats = categories.filter((c) => !c.parent_id);
   const visible = showAllCats ? topCats : topCats.slice(0, 5);
@@ -51,80 +53,96 @@ export default function FilterSidebar({ categories, filters, onChange, onClear, 
   }
 
   return (
-    <aside className="w-60 flex-shrink-0">
-      <div className="bg-white rounded-2xl border border-gray-100 p-5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-1">
-          <span className="font-semibold text-navy text-sm">Filter</span>
-          <button onClick={onClear} className="text-xs text-[#D45B3E] font-medium hover:underline">
-            Clear All
-          </button>
-        </div>
-        <p className="text-xs text-gray-400 mb-4">{totalCount?.toLocaleString() || 0}+ Products</p>
-        <hr className="border-gray-100 mb-4" />
+    <>
+      <div className="flex items-center justify-between mb-1">
+        <span className="font-semibold text-navy text-sm">Filter</span>
+        <button onClick={onClear} className="text-xs text-[#D45B3E] font-medium hover:underline">
+          Clear All
+        </button>
+      </div>
+      <p className="text-xs text-gray-400 mb-4">{totalCount?.toLocaleString() || 0}+ Products</p>
+      <hr className="border-gray-100 mb-4" />
 
-        {/* Category */}
-        <Section title="Category">
-          {visible.map((cat) => (
-            <label key={cat.id} className="flex items-center justify-between cursor-pointer group py-0.5">
+      <Section title="Category">
+        {visible.map((cat) => (
+          <label key={cat.id} className="flex items-center justify-between cursor-pointer group py-0.5">
+            <div className="flex items-center gap-2">
+              <input type="checkbox"
+                checked={(filters.categories || []).includes(cat.id)}
+                onChange={() => toggleCategory(cat.id)}
+                className="accent-navy w-3.5 h-3.5 rounded"
+              />
+              <span className="text-sm text-gray-600 group-hover:text-navy">{cat.name}</span>
+            </div>
+            <span className="text-xs text-gray-400">({cat.product_count || 0})</span>
+          </label>
+        ))}
+        {topCats.length > 5 && (
+          <button onClick={() => setShowAllCats((v) => !v)}
+            className="text-xs text-[#D45B3E] font-medium mt-2 hover:underline">
+            {showAllCats ? 'Show less' : 'Show more'}
+          </button>
+        )}
+      </Section>
+
+      <hr className="border-gray-100 my-4" />
+
+      <Section title="Ratings">
+        {RATINGS.map((r) => (
+          <label key={r} className="flex items-center justify-between cursor-pointer group py-0.5">
+            <div className="flex items-center gap-2">
+              <input type="radio" name="rating"
+                checked={filters.rating === r}
+                onChange={() => setRating(r)}
+                className="accent-navy w-3.5 h-3.5"
+              />
+              <Stars n={r} />
+              <span className="text-xs text-gray-500">{r} & up</span>
+            </div>
+          </label>
+        ))}
+      </Section>
+
+      <hr className="border-gray-100 my-4" />
+
+      <Section title="Price">
+        {PRICE_RANGES.map((range) => {
+          const key = `${range.min}-${range.max}`;
+          return (
+            <label key={key} className="flex items-center justify-between cursor-pointer group py-0.5">
               <div className="flex items-center gap-2">
                 <input type="checkbox"
-                  checked={(filters.categories || []).includes(cat.id)}
-                  onChange={() => toggleCategory(cat.id)}
+                  checked={(filters.priceRanges || []).includes(key)}
+                  onChange={() => togglePrice(range)}
                   className="accent-navy w-3.5 h-3.5 rounded"
                 />
-                <span className="text-sm text-gray-600 group-hover:text-navy">{cat.name}</span>
-              </div>
-              <span className="text-xs text-gray-400">({cat.product_count || 0})</span>
-            </label>
-          ))}
-          {topCats.length > 5 && (
-            <button onClick={() => setShowAllCats((v) => !v)}
-              className="text-xs text-[#D45B3E] font-medium mt-2 hover:underline">
-              {showAllCats ? 'Show less' : 'Show more'}
-            </button>
-          )}
-        </Section>
-
-        <hr className="border-gray-100 my-4" />
-
-        {/* Ratings */}
-        <Section title="Ratings">
-          {RATINGS.map((r) => (
-            <label key={r} className="flex items-center justify-between cursor-pointer group py-0.5">
-              <div className="flex items-center gap-2">
-                <input type="radio" name="rating"
-                  checked={filters.rating === r}
-                  onChange={() => setRating(r)}
-                  className="accent-navy w-3.5 h-3.5"
-                />
-                <Stars n={r} />
-                <span className="text-xs text-gray-500">{r} & up</span>
+                <span className="text-sm text-gray-600 group-hover:text-navy">{range.label}</span>
               </div>
             </label>
-          ))}
-        </Section>
+          );
+        })}
+      </Section>
+    </>
+  );
+}
 
-        <hr className="border-gray-100 my-4" />
+// inline=true  → full-width panel (used inside mobile expand section in ShopPage)
+// inline=false → fixed-width sidebar, hidden on mobile, shown on md+
+export default function FilterSidebar({ categories, filters, onChange, onClear, totalCount, inline = false }) {
+  const props = { categories, filters, onChange, onClear, totalCount };
 
-        {/* Price */}
-        <Section title="Price">
-          {PRICE_RANGES.map((range) => {
-            const key = `${range.min}-${range.max}`;
-            return (
-              <label key={key} className="flex items-center justify-between cursor-pointer group py-0.5">
-                <div className="flex items-center gap-2">
-                  <input type="checkbox"
-                    checked={(filters.priceRanges || []).includes(key)}
-                    onChange={() => togglePrice(range)}
-                    className="accent-navy w-3.5 h-3.5 rounded"
-                  />
-                  <span className="text-sm text-gray-600 group-hover:text-navy">{range.label}</span>
-                </div>
-              </label>
-            );
-          })}
-        </Section>
+  if (inline) {
+    return (
+      <div className="bg-white rounded-2xl border border-gray-100 p-5">
+        <FilterContent {...props} />
+      </div>
+    );
+  }
+
+  return (
+    <aside className="hidden md:block w-60 flex-shrink-0">
+      <div className="bg-white rounded-2xl border border-gray-100 p-5">
+        <FilterContent {...props} />
       </div>
     </aside>
   );
@@ -146,6 +164,3 @@ function Section({ title, children }) {
     </div>
   );
 }
-
-// useState needs to be imported — add it here since this file uses it
-import { useState } from 'react';
