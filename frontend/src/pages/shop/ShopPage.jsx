@@ -94,6 +94,7 @@ export default function ShopPage() {
   ];
 
   return (
+    <>
     <div className="min-h-screen bg-white">
       <ShopNavbar />
 
@@ -225,5 +226,6 @@ export default function ShopPage() {
       </div>
     </div>
     <Footer />
+    </>
   );
 }
