@@ -1,261 +1,229 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import Footer from '../../components/layout/Footer';
 import api from '../../services/api';
 
-// ── Image constants (replace with Cloudinary URLs when brand assets are ready) ─
 const IMG = {
-  heroBg: 'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?auto=format&fit=crop&w=1400&q=80',
-  heroWoman: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=900&q=80',
-  fabric: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=600&q=80',
-  accessories: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
-  beauty: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=600&q=80',
-  foodstuff: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
-  whyChoose: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80',
-  vendorCta: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+  hero: '/Hero%20background%20Image%201.jpeg',
+  fabrics: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+  accessories: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+  beauty: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=800&q=80',
+  foodstuff: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+  whyChoose: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
+  vendor: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80',
   finalBanner: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80',
 };
 
-// ── Navbar ────────────────────────────────────────────────────────────────────
-
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const { user } = useAuth();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const dashboardPath = () => {
-    if (!user) return '/login';
-    if (user.role === 'admin' || user.role === 'sub_admin') return '/admin/dashboard';
-    if (user.role === 'vendor') return '/vendor/dashboard';
-    return '/shop';
-  };
-
-  return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-navy shadow-lg' : 'bg-navy/60 backdrop-blur-sm'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/">
-          <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="w-28 h-auto" />
-        </Link>
-
-        <div className="hidden md:flex items-center gap-8">
-          <Link to="/shop" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
-            Shop
-          </Link>
-          <a href="#how-it-works" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
-            How It Works
-          </a>
-          <Link to="/vendor/register" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
-            Become a Vendor
-          </Link>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {user ? (
-            <Link
-              to={dashboardPath()}
-              className="bg-rust hover:bg-rust-dark text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors"
-            >
-              Dashboard
-            </Link>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="text-white/80 hover:text-white text-sm font-medium transition-colors hidden sm:block"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-rust hover:bg-rust-dark text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors"
-              >
-                Sign Up
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </nav>
-  );
-}
-
-// ── Hero ──────────────────────────────────────────────────────────────────────
-
-function HeroSection() {
-  return (
-    <section className="relative min-h-screen flex overflow-hidden">
-      {/* Left — content */}
-      <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-24 pb-16 bg-hiw-bg">
-        <span className="inline-flex items-center gap-2 text-rust text-sm font-semibold uppercase tracking-widest mb-6">
-          <span className="w-6 h-px bg-rust" />
-          Cross-border, made simple
-        </span>
-        <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Your Favourite
-          <br />
-          Nigerian Products,
-          <br />
-          <span className="text-rust">Delivered Worldwide</span>
-        </h1>
-        <p className="text-white/70 text-lg mb-10 max-w-md leading-relaxed">
-          Shop authentic Nigerian products from verified vendors and have them
-          delivered directly to your door — wherever in the world you are.
-        </p>
-        <div className="flex items-center gap-4">
-          <Link
-            to="/shop"
-            className="bg-rust hover:bg-rust-dark text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-rust/30"
-          >
-            Shop Now
-          </Link>
-          <Link
-            to="/vendor/register"
-            className="border border-white/40 hover:border-white text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-200 hover:bg-white/10"
-          >
-            About Us
-          </Link>
-        </div>
-
-        {/* Stats strip */}
-        <div className="flex gap-8 mt-14 pt-8 border-t border-white/10">
-          {[
-            { n: '2,000+', label: 'Products' },
-            { n: '500+', label: 'Verified Vendors' },
-            { n: '30+', label: 'Countries Reached' },
-          ].map(({ n, label }) => (
-            <div key={label}>
-              <p className="text-white font-bold text-2xl">{n}</p>
-              <p className="text-white/50 text-xs mt-0.5">{label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right — photo */}
-      <div className="hidden md:block w-1/2 relative">
-        <img
-          src={IMG.heroWoman}
-          alt="Woman with a delivery box"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-        {/* warm brown tint overlay so it blends with left panel */}
-        <div className="absolute inset-0 bg-warm-brown/20" />
-      </div>
-    </section>
-  );
-}
-
-// ── Trust Strip ───────────────────────────────────────────────────────────────
-
-const trustItems = [
+const journeyCards = [
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-      </svg>
-    ),
-    color: 'bg-sage/20 text-sage',
+    id: 'verified',
+    tone: 'bg-[#953F10] text-white',
     title: 'Verified Vendors',
-    body: 'Every seller is vetted and approved by Bryge before listing products on our platform.',
+    body: 'Every seller goes through our review process before listing a single product. No surprises.',
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
-      </svg>
-    ),
-    color: 'bg-rust/20 text-rust',
-    title: 'Secured Packaging',
-    body: 'Products are carefully prepared for long-distance international shipping.',
+    id: 'secure',
+    tone: 'bg-[#6B8E73] text-white',
+    title: 'Secure Payments',
+    body: 'Every seller goes through our review process before listing a single product. No surprises.',
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-      </svg>
-    ),
-    color: 'bg-navy/10 text-navy',
+    id: 'quality',
+    tone: 'bg-[#7D5A3E] text-white',
     title: 'Quality Checked',
-    body: 'Products meet Bryge quality standards before being dispatched to customers.',
+    body: 'Every product listed on Bryge is reviewed before going live. What you see is what you get, no counterfeits, no misleading listings.',
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-    ),
-    color: 'bg-warm-brown/20 text-warm-brown',
-    title: 'Rapid Support',
-    body: 'Our support team is available to resolve any issue quickly and efficiently.',
+    id: 'support',
+    tone: 'bg-[#1E3A5F] text-white',
+    title: 'Real Support',
+    body: 'Got a question or a problem? Our team actually picks up and responds.',
   },
 ];
 
-function TrustStrip() {
-  return (
-    <section className="bg-cream py-14 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {trustItems.map(({ icon, color, title, body }) => (
-          <div key={title} className="bg-white rounded-2xl p-6 shadow-sm">
-            <span className={`inline-flex items-center justify-center w-10 h-10 rounded-xl mb-4 ${color}`}>
-              {icon}
-            </span>
-            <h3 className="font-semibold text-navy text-sm mb-1.5">{title}</h3>
-            <p className="text-warm-brown text-sm leading-relaxed">{body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ── Categories ────────────────────────────────────────────────────────────────
-
 const categories = [
-  { name: 'Fabrics', img: IMG.fabric, slug: 'fabrics' },
+  { name: 'Fabrics', img: IMG.fabrics, slug: 'fabrics' },
   { name: 'Accessories', img: IMG.accessories, slug: 'accessories-jewelry' },
   { name: 'Beauty', img: IMG.beauty, slug: 'beauty' },
   { name: 'Foodstuff', img: IMG.foodstuff, slug: 'foodstuff' },
 ];
 
+const howSteps = [
+  {
+    id: 'discover',
+    title: 'Discover Trusted Finds',
+    body: 'Browse curated products from verified vendors across fashion, food, lifestyle, and more.',
+  },
+  {
+    id: 'order',
+    title: 'Place Your Order Securely',
+    body: 'Checkout confidently through our secure payment process.',
+  },
+  {
+    id: 'fulfillment',
+    title: 'We Coordinate Fulfilment',
+    body: 'Bryge manages vendor processing, quality checks, and shipping logistics.',
+  },
+  {
+    id: 'worldwide',
+    title: 'Receive Worldwide',
+    body: 'Your order is delivered safely to you, wherever you are.',
+  },
+  {
+    id: 'support',
+    title: 'Confirm & Support Vendors',
+    body: 'Confirm receipt so vendors are paid and service standards stay strong.',
+  },
+];
+
+const reasons = [
+  'Verified vendors only',
+  'Escrow-protected transactions',
+  'Authentic products from Nigeria',
+  'Cross-border delivery coordination',
+  'Responsive support from real people',
+];
+
+function JourneyIcon({ id }) {
+  if (id === 'verified') {
+    return (
+      <svg className="h-4 w-4 text-[#7FBF35]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2.5 14.4 6l4-.6-.6 4 3.5 2.6-3.5 2.6.6 4-4-.6L12 21.5 9.6 18l-4 .6.6-4L2.7 12l3.5-2.6-.6-4 4 .6L12 2.5Zm3.3 8.2-4.1 4.2a1 1 0 0 1-1.4 0l-1.8-1.8 1.4-1.4 1.1 1.1 3.4-3.5 1.4 1.4Z" />
+      </svg>
+    );
+  }
+
+  if (id === 'secure') {
+    return (
+      <svg className="h-4 w-4 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a6 6 0 0 1 6 6v2h.8A2.2 2.2 0 0 1 21 12.2v7.6a2.2 2.2 0 0 1-2.2 2.2H5.2A2.2 2.2 0 0 1 3 19.8v-7.6A2.2 2.2 0 0 1 5.2 10H6V8a6 6 0 0 1 6-6Zm0 10a2.2 2.2 0 0 0-1 4.1V18h2v-1.9a2.2 2.2 0 0 0-1-4.1Zm0-8a4 4 0 0 0-4 4v2h8V8a4 4 0 0 0-4-4Z" />
+      </svg>
+    );
+  }
+
+  if (id === 'quality') {
+    return (
+      <svg className="h-4 w-4 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2.2 4 5v6.4c0 5 3.4 9.7 8 10.9 4.6-1.2 8-5.9 8-10.9V5l-8-2.8Zm-1.1 13.9-3.1-3.1 1.4-1.4 1.7 1.7 4-4 1.4 1.4-5.4 5.4Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="h-4 w-4 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.7 12.7-1.4 1.4-3.9-3.9V7h2v4.4Z" />
+    </svg>
+  );
+}
+
+function HeroSection() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="relative h-screen min-h-[640px]">
+        <img src={IMG.hero} alt="Bryge hero" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/10" />
+
+        <div className="relative z-10 flex h-full items-center">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="max-w-[640px] text-white">
+              <h1 className="font-instrument text-[54px] font-semibold leading-[1.08] tracking-[-0.02em]">
+                You Left Home. But
+                <br />
+                Home Doesn&apos;t Have to
+                <br />
+                Leave You.
+              </h1>
+
+              <p className="font-instrument mt-3 max-w-[520px] text-[14px] leading-snug font-medium text-white/90">
+                Shop your favourite products from verified vendors, delivered
+                <br />
+                straight to you, no stress, no hassle.
+              </p>
+
+              <div className="mt-6 flex items-center gap-2.5">
+                <Link
+                  to="/shop"
+                  className="rounded-xl bg-rust px-8 py-3 text-[17px] font-medium text-white transition-colors hover:bg-rust-dark"
+                >
+                  Shop Now
+                </Link>
+                <Link
+                  to="/about"
+                  className="rounded-xl bg-white px-8 py-3 text-[17px] font-medium text-navy"
+                >
+                  About Us
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function JourneySection() {
+  return (
+    <section className="bg-[#F5F1E8] py-16 sm:py-20 md:py-24">
+      <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 md:px-9">
+        <div className="mb-10 flex items-start justify-between gap-6 sm:mb-12">
+          <div>
+            <h2 className="font-instrument max-w-[400px] text-[32px] sm:text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-[#1E3A5F]">
+            We've Got You, Every
+            <br />
+            Step of the Way
+            </h2>
+            <p className="mt-4 max-w-[420px] text-[17px] leading-[1.35] text-[#1E3A5F]/70">
+              Shopping across borders can feel risky. We built Bryge so it never has to.
+            </p>
+          </div>
+
+          <Link to="/about" className="mt-1 rounded-2xl bg-[#953F10] px-8 py-3 text-[17px] font-medium text-white text-center">
+            About Us
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
+          {journeyCards.map((card) => (
+            <article key={card.id} className={`relative min-h-[180px] rounded-xl px-5 pb-5 pt-14 ${card.tone}`}>
+              <div className="absolute left-0 top-8 rounded-r-full bg-[#F5F1E8] px-4 py-2 pr-6 text-sm font-medium text-[#1E3A5F]">
+                <span className="inline-flex items-center gap-2">
+                  <JourneyIcon id={card.id} />
+                  <span>{card.title}</span>
+                </span>
+              </div>
+              <p className="mt-[35px] mb-[35px] text-[15px] leading-[1.35] text-white/95">{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CategoriesSection() {
   return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-navy text-3xl md:text-4xl font-bold mb-3">
-            Everything You've Been Missing
+    <section className="bg-[#F5F1E8] py-16 sm:py-20">
+      <div className="mx-auto w-full max-w-[1320px] px-6 sm:px-10">
+        <div className="mb-12 text-center">
+          <h2 className="font-instrument text-[40px] font-semibold leading-[1.15] text-navy">
+            Everything You've
+            <br />
+            Been Missing
           </h2>
-          <p className="text-warm-brown text-base max-w-xl mx-auto">
-            From handwoven fabrics to fresh produce, we built Bryge to bring it all to you.
+          <p className="font-instrument mx-auto mt-3 max-w-[500px] text-[16px] leading-[1.25] text-[#1E3A5F]/70">
+            From fabrics to flavours, browse authentic products curated just for you.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {categories.map(({ name, img, slug }) => (
-            <Link
-              key={name}
-              to={`/shop?category=${slug}`}
-              className="group relative rounded-2xl overflow-hidden aspect-[3/4] block"
-            >
-              <img
-                src={img}
-                alt={name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-4 left-4 text-white font-semibold text-lg">
-                {name}
-              </span>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {categories.map((item) => (
+            <Link key={item.name} to={`/shop?category=${item.slug}`} className="group relative overflow-hidden rounded-2xl">
+              <div className="aspect-[4/5]">
+                <img src={item.img} alt={item.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              </div>
+              <div className="absolute inset-x-3 bottom-4 rounded-2xl border border-[#C8895D] bg-[#F5F1E8] px-4 py-2.5 text-center text-[17px] font-medium text-[#1E3A5F]">
+                {item.name}
+              </div>
             </Link>
           ))}
         </div>
@@ -264,93 +232,70 @@ function CategoriesSection() {
   );
 }
 
-// ── How It Works ──────────────────────────────────────────────────────────────
-
-const steps = [
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    ),
-    title: 'Discover Trusted Finds',
-    body: 'Explore curated Nigerian products from verified vendors you can count on.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-      </svg>
-    ),
-    title: 'Place Your Order Securely',
-    body: 'Checkout securely through Paystack, Stripe, or PayPal. Your funds are protected.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-      </svg>
-    ),
-    title: 'We Coordinate Fulfillment',
-    body: 'Bryge handles every step — preparing, packing, and getting it ready for pickup.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: 'Receive Worldwide',
-    body: 'Your products arrive safely, wherever you are in the world.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-      </svg>
-    ),
-    title: 'Confirm & Support Vendors',
-    body: 'Confirm delivery to release payment to the vendor. Support the people behind the product.',
-  },
-];
-
 function HowItWorksSection() {
+  const iconMap = {
+    discover: (
+      <svg className="h-8 w-8 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 2.9 1.4-1.4-2.9-2.9A10 10 0 0 0 12 2Zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z" />
+        <path d="m10.8 12.7-1.6-1.6-1.4 1.4 3 3 5.4-5.4-1.4-1.4-4 4Z" />
+      </svg>
+    ),
+    order: (
+      <svg className="h-8 w-8 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3 4h2l2.2 9.1A2 2 0 0 0 9.2 15H18a2 2 0 0 0 1.9-1.4L22 7H7.1L6.6 5H3V4Zm7 14a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
+      </svg>
+    ),
+    fulfillment: (
+      <svg className="h-8 w-8 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M8 3h8v2H8V3Zm-3 4h4v4H5V7Zm10 0h4v4h-4V7ZM5 13h4v4H5v-4Zm10 0h4v4h-4v-4Zm-6 6h6v2H9v-2Z" />
+      </svg>
+    ),
+    worldwide: (
+      <svg className="h-8 w-8 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3 11h11v5H3v-5Zm11 1 2.6-3H20l1 3v4h-2a2 2 0 1 1-4 0h-1v-4Zm-9 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
+      </svg>
+    ),
+    support: (
+      <svg className="h-8 w-8 text-[#1E3A5F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a8 8 0 0 0-8 8v5.2A2.8 2.8 0 0 0 6.8 18H9v-6H6v-2a6 6 0 1 1 12 0v2h-3v6h2.2a2.8 2.8 0 0 0 2.8-2.8V10a8 8 0 0 0-8-8Z" />
+      </svg>
+    ),
+  };
+
   return (
-    <section id="how-it-works" className="bg-hiw-bg py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Title card */}
-          <div className="md:col-span-1 flex flex-col justify-between bg-white/5 border border-white/10 rounded-2xl p-8">
-            <div>
-              <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight mb-4">
-                How It Works
-              </h2>
-              <p className="text-white/60 text-sm leading-relaxed">
-                From browsing to your doorstep — we've got every step covered so
-                you can focus on what matters.
+    <section className="bg-[#F5F1E8] py-14 sm:py-18">
+      <div className="mx-auto w-full max-w-[1060px] px-5 sm:px-6">
+        <div className="rounded-[22px] bg-[#7D5A3E] p-[50px]">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="rounded-2xl bg-transparent px-2 py-1 md:col-span-1">
+              <h2 className="font-instrument text-[40px] font-semibold leading-[1.05] text-[#F5F1E8]">How It Works</h2>
+              <p className="mt-3 max-w-[260px] text-[16px] leading-[1.25] text-[#F5F1E8]">
+                From browsing to your doorstep, We made ridiculously simple
               </p>
+              <Link
+                to="/shop"
+                className="mt-6 inline-flex min-w-[148px] justify-center rounded-2xl bg-[#F5F1E8] px-7 py-3 text-[17px] font-medium text-[#1E3A5F]"
+              >
+                Shop Now
+              </Link>
             </div>
-            <Link
-              to="/shop"
-              className="mt-8 inline-flex items-center justify-center bg-rust hover:bg-rust-dark text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors self-start"
-            >
-              Shop Now
-            </Link>
+
+            {howSteps.slice(0, 2).map((step) => (
+              <article key={step.id} className="rounded-xl bg-[#F5F1E8] p-5">
+                {iconMap[step.id]}
+                <h3 className="mt-4 font-instrument text-[20px] font-semibold leading-[1.15] text-[#1E3A5F]">{step.title}</h3>
+                <p className="mt-3 text-[16px] leading-[1.25] text-[#1E3A5F]">{step.body}</p>
+              </article>
+            ))}
           </div>
 
-          {/* Steps grid — 2 cols × 3 rows would overflow so we use a 2×3 on the remaining 2 cols */}
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {steps.map(({ icon, title, body }) => (
-              <div
-                key={title}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors"
-              >
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-rust/20 text-rust mb-4">
-                  {icon}
-                </span>
-                <h3 className="text-white font-semibold text-sm mb-2">{title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{body}</p>
-              </div>
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {howSteps.slice(2).map((step) => (
+              <article key={step.id} className="rounded-xl bg-[#F5F1E8] p-5">
+                {iconMap[step.id]}
+                <h3 className="mt-4 font-instrument text-[20px] font-semibold leading-[1.15] text-[#1E3A5F]">{step.title}</h3>
+                <p className="mt-3 text-[16px] leading-[1.25] text-[#1E3A5F]">{step.body}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -359,264 +304,202 @@ function HowItWorksSection() {
   );
 }
 
-// ── Featured Products ─────────────────────────────────────────────────────────
-
 function ProductCard({ product }) {
-  const primaryImage = product.images?.find((i) => i.is_primary)?.url ?? product.images?.[0]?.url;
+  const primaryImage = product.images?.find((img) => img.is_primary)?.url ?? product.images?.[0]?.url;
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-      <div className="relative aspect-square bg-cream overflow-hidden">
+    <article className="overflow-hidden rounded-md border border-[#ECE4D8] bg-white">
+      <div className="aspect-square border-b border-[#ECE4D8] bg-[#F6F2EB]">
         {primaryImage ? (
-          <img
-            src={primaryImage}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
-          />
+          <img src={primaryImage} alt={product.name} className="h-full w-full object-cover" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <svg className="w-16 h-16 text-sand" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM4 5a2 2 0 012-2h12a2 2 0 012 2v2H4V5z" />
-            </svg>
+          <div className="flex h-full items-center justify-center">
+            <img src="/brand/logo-icon-navy.png" alt="Bryge" className="h-10 w-10 opacity-85" />
           </div>
         )}
       </div>
-      <div className="p-4">
-        <p className="text-navy font-semibold text-sm truncate mb-1">{product.name}</p>
-        <p className="text-rust font-bold text-base mb-4">
-          ₦{Number(product.price).toLocaleString()}
-        </p>
+      <div className="px-2 py-2 text-center">
+        <p className="truncate text-[11px] font-semibold text-navy">{product.name}</p>
+        <p className="mt-1 text-[10px] font-medium text-[#8A755F]">?{Number(product.price || 8500).toLocaleString()}</p>
+      </div>
+      <div className="px-2 pb-2">
         <Link
           to={`/shop/product/${product.id}`}
-          className="block w-full text-center bg-rust hover:bg-rust-dark text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
+          className="block rounded-full bg-rust px-3 py-1.5 text-center text-[17px] font-medium text-white"
         >
           Add to Cart
         </Link>
       </div>
-    </div>
+    </article>
   );
 }
 
-function FeaturedProductsSection() {
+function ProductsSection() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/products?limit=4')
-      .then((res) => setProducts(res.data.products?.slice(0, 4) ?? []))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
+    let active = true;
+
+    api
+      .get('/products?limit=4')
+      .then((res) => {
+        if (!active) return;
+        setProducts(res.data.products?.slice(0, 4) ?? []);
+      })
+      .catch(() => {
+        if (!active) return;
+        setProducts([]);
+      })
+      .finally(() => {
+        if (!active) return;
+        setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const placeholders = Array.from({ length: 4 }, (_, i) => ({
-    id: `ph-${i}`,
-    name: 'Earrings',
-    price: 8500,
-    images: [],
-  }));
+  const placeholders = [
+    { id: 'mock-1', name: 'Wrist Beads', price: 8500, images: [] },
+    { id: 'mock-2', name: 'Wrist Beads', price: 8500, images: [] },
+    { id: 'mock-3', name: 'Wrist Beads', price: 8500, images: [] },
+    { id: 'mock-4', name: 'Wrist Beads', price: 8500, images: [] },
+  ];
 
-  const items = products.length > 0 ? products : (!loading ? placeholders : []);
+  const items = products.length > 0 ? products : placeholders;
 
   return (
-    <section className="bg-cream py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-navy text-3xl md:text-4xl font-bold mb-3">
-            What People Are Ordering Right Now
+    <section className="bg-white py-12 sm:py-16">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="mb-8 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold leading-tight text-navy">
+            What People Are
+            <br />
+            Ordering Right Now
           </h2>
-          <p className="text-warm-brown text-base">
-            Join thousands of customers already bringing home closer.
-          </p>
+          <p className="mt-2 text-xs text-warm-brown">Top picks from the Bryge marketplace.</p>
         </div>
 
-        {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden animate-pulse">
-                <div className="aspect-square bg-sand" />
-                <div className="p-4 space-y-2">
-                  <div className="h-4 bg-sand rounded w-3/4" />
-                  <div className="h-4 bg-sand rounded w-1/2" />
-                  <div className="h-9 bg-sand rounded-xl mt-3" />
+        {loading && products.length === 0 ? (
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className="animate-pulse overflow-hidden rounded-md border border-[#ECE4D8] bg-white">
+                <div className="aspect-square bg-[#F0E8DC]" />
+                <div className="space-y-2 px-2 py-3">
+                  <div className="h-3 rounded bg-[#F0E8DC]" />
+                  <div className="h-3 w-2/3 rounded bg-[#F0E8DC]" />
+                  <div className="h-6 rounded-full bg-[#F0E8DC]" />
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {items.map((p) => (
-              <ProductCard key={p.id} product={p} />
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            {items.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         )}
-
-        <div className="text-center mt-10">
-          <Link
-            to="/shop"
-            className="inline-flex items-center gap-2 border-2 border-navy text-navy font-semibold px-8 py-3 rounded-full hover:bg-navy hover:text-white transition-all duration-200"
-          >
-            View All Products
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
       </div>
     </section>
   );
 }
 
-// ── Why Choose Bryge ──────────────────────────────────────────────────────────
-
-const reasons = [
-  {
-    n: '01',
-    title: 'Verified Vendors',
-    body: 'Every vendor on Bryge goes through a thorough verification process to ensure quality and authenticity.',
-  },
-  {
-    n: '02',
-    title: 'Your Money is Always Protected',
-    body: 'We hold your payment securely until your order arrives safely. Shop without any worry.',
-  },
-  {
-    n: '03',
-    title: 'Authentic Cultural Products',
-    body: 'Straight from Nigerian artisans and merchants — products you cannot find anywhere else abroad.',
-  },
-  {
-    n: '04',
-    title: 'Seamless Cross-Border Delivery',
-    body: 'Bryge handles all logistics — pickup, packaging, customs, and international delivery.',
-  },
-  {
-    n: '05',
-    title: 'Best Support When You Need It',
-    body: 'Our support team is always available whenever you have a question or encounter an issue.',
-  },
-];
-
 function WhyChooseSection() {
   return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left — reasons */}
-        <div>
-          <h2 className="text-navy text-3xl md:text-4xl font-bold mb-10">
-            Why Choose Bryge
-          </h2>
-          <div className="space-y-7">
-            {reasons.map(({ n, title, body }) => (
-              <div key={n} className="flex gap-5">
-                <span className="text-rust/30 font-bold text-2xl leading-none w-10 flex-shrink-0 pt-0.5">
-                  {n}
-                </span>
-                <div>
-                  <h3 className="text-navy font-semibold text-sm mb-1">{title}</h3>
-                  <p className="text-warm-brown text-sm leading-relaxed">{body}</p>
-                </div>
+    <section className="bg-white py-12 sm:py-16">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 md:grid-cols-2">
+        <div className="rounded-md bg-[#F7F4EE] p-4 sm:p-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-navy">Why Choose Bryge</h2>
+          <div className="mt-4 space-y-3">
+            {reasons.map((reason, index) => (
+              <div key={reason} className="grid grid-cols-[20px_1fr] items-start gap-2.5 border-b border-[#E7DECF] pb-2.5">
+                <span className="text-[11px] font-semibold text-[#9B8C7C]">{String(index + 1).padStart(2, '0')}</span>
+                <p className="text-[11px] leading-snug text-[#4A5A71]">{reason}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right — photo */}
-        <div className="relative rounded-3xl overflow-hidden aspect-[4/5]">
-          <img
-            src={IMG.whyChoose}
-            alt="Happy customer"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
+        <div className="overflow-hidden rounded-md">
+          <img src={IMG.whyChoose} alt="Why choose Bryge" className="h-full min-h-[280px] w-full object-cover" />
         </div>
       </div>
     </section>
   );
 }
 
-// ── Vendor CTA ────────────────────────────────────────────────────────────────
-
-function VendorCTASection() {
+function VendorCtaSection() {
   return (
-    <section className="bg-navy py-0 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-        {/* Left — text */}
-        <div className="flex flex-col justify-center px-8 md:px-16 py-16 lg:py-20">
-          <h2 className="text-white text-3xl md:text-4xl font-bold mb-5 leading-tight">
-            Your Products Deserve
-            <br />a Global Stage
-          </h2>
-          <p className="text-white/60 text-base leading-relaxed mb-10 max-w-md">
-            Thousands of Nigerians abroad are searching for exactly what you sell.
-            Join Bryge and start reaching global customers today.
-          </p>
-          <Link
-            to="/vendor/register"
-            className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white hover:text-navy transition-all duration-200 self-start"
-          >
-            Become a Vendor
-          </Link>
-        </div>
+    <section className="bg-white py-10 sm:py-12">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-3 rounded-lg bg-[#1E3A5F] p-4 sm:grid-cols-[1fr_140px] sm:items-center sm:p-6">
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold leading-tight text-white">
+              Your Products Deserve a
+              <br />
+              Global Stage
+            </h2>
+            <p className="mt-2 max-w-sm text-[12px] text-white/80">Join Bryge and reach customers around the world.</p>
+            <Link
+              to="/vendor/register"
+              className="mt-4 inline-flex justify-center rounded-full bg-white px-4 py-1.5 text-[17px] font-medium text-[#1E3A5F]"
+            >
+              Become a Vendor
+            </Link>
+          </div>
 
-        {/* Right — photo */}
-        <div className="relative min-h-[340px] lg:min-h-0">
-          <img
-            src={IMG.vendorCta}
-            alt="Vendor with products"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-navy/30" />
+          <div className="overflow-hidden rounded-md">
+            <img src={IMG.vendor} alt="Vendor" className="h-[120px] w-full object-cover sm:h-[100px]" />
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-// ── Final Banner ──────────────────────────────────────────────────────────────
 
 function FinalBannerSection() {
   return (
-    <section className="relative min-h-[420px] flex items-center justify-center overflow-hidden">
-      <img
-        src={IMG.finalBanner}
-        alt="City skyline"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-dark-navy/70" />
-      <div className="relative z-10 text-center px-6 py-20">
-        <h2 className="text-white text-4xl md:text-5xl font-bold mb-5 leading-tight">
-          Home is Closer
-          <br />Than You Think
-        </h2>
-        <p className="text-white/70 text-lg mb-10 max-w-lg mx-auto">
-          Bryge brings Nigeria to your door — authentic, affordable, and always with you.
-        </p>
-        <Link
-          to="/shop"
-          className="inline-flex items-center gap-2 bg-rust hover:bg-rust-dark text-white font-semibold px-10 py-4 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-rust/30"
-        >
-          Start Shopping
-        </Link>
+    <section className="relative overflow-hidden">
+      <div className="relative h-[280px] sm:h-[340px]">
+        <img src={IMG.finalBanner} alt="City background" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-[#0E1C31]/65" />
+
+        <div className="relative z-10 flex h-full items-center justify-center px-4 text-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-white">
+              Home Is Closer
+              <br />
+              Than You Think
+            </h2>
+            <p className="mt-2 text-xs text-white/85">Bring home to your doorstep, wherever you live.</p>
+            <Link
+              to="/shop"
+              className="mt-4 inline-flex justify-center rounded-full bg-white px-4 py-1.5 text-[17px] font-medium text-navy"
+            >
+              Start Shopping
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
-
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <div className="min-h-screen bg-cream">
       <HeroSection />
-      <TrustStrip />
+      <JourneySection />
       <CategoriesSection />
       <HowItWorksSection />
-      <FeaturedProductsSection />
+      <ProductsSection />
       <WhyChooseSection />
-      <VendorCTASection />
+      <VendorCtaSection />
       <FinalBannerSection />
-      <Footer />
+      <section className="h-16 bg-white" />
     </div>
   );
 }
