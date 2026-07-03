@@ -325,7 +325,7 @@ function ProductCard({ product }) {
       <div className="px-2 pb-2">
         <Link
           to={`/shop/product/${product.id}`}
-          className="block rounded-full bg-rust px-3 py-1.5 text-center text-[17px] font-medium text-white"
+          className="block rounded-full bg-rust px-6 py-3 text-center text-[16px] font-medium text-white"
         >
           Add to Cart
         </Link>
@@ -374,12 +374,12 @@ function ProductsSection() {
     <section className="bg-white py-12 sm:py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="mb-8 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold leading-tight text-navy">
+          <h2 className="font-instrument text-[40px] font-semibold leading-tight text-navy">
             What People Are
             <br />
             Ordering Right Now
           </h2>
-          <p className="mt-2 text-xs text-warm-brown">Top picks from the Bryge marketplace.</p>
+          <p className="mt-2 text-[16px] text-[#1E3A5F]">Join thousands of customers already bringing home closer</p>
         </div>
 
         {loading && products.length === 0 ? (
@@ -490,7 +490,7 @@ function FinalBannerSection() {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream [&>section+section]:pt-[90px]">
       <HeroSection />
       <JourneySection />
       <CategoriesSection />
@@ -499,7 +499,6 @@ export default function HomePage() {
       <WhyChooseSection />
       <VendorCtaSection />
       <FinalBannerSection />
-      <section className="h-16 bg-white" />
     </div>
   );
 }
