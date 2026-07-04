@@ -8,8 +8,8 @@ const IMG = {
   accessories: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
   beauty: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=800&q=80',
   foodstuff: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
-  whyChoose: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
-  vendor: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80',
+  whyChoose: '/brand/why-choose-bryge.jpeg',
+  vendor: '/brand/vendor-cta.jpeg',
   finalBanner: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80',
 };
 
@@ -76,11 +76,26 @@ const howSteps = [
 ];
 
 const reasons = [
-  'Verified vendors only',
-  'Escrow-protected transactions',
-  'Authentic products from Nigeria',
-  'Cross-border delivery coordination',
-  'Responsive support from real people',
+  {
+    title: 'Verified Vendors Only',
+    body: 'Every vendor on Bryge goes through a manual verification process. No random sellers, no fake listings - just real people selling real products.',
+  },
+  {
+    title: 'Your Money Is Always Protected',
+    body: "We hold your payment in escrow until you confirm your order arrived safely. Your money never reaches the vendor until you're satisfied.",
+  },
+  {
+    title: 'Authentic Cultural Products',
+    body: 'Every product on Bryge is sourced directly from Nigerian artisans and verified sellers. Authentic quality, straight from the source.',
+  },
+  {
+    title: 'Seamless Cross-Border Delivery',
+    body: 'Bryge handles all the logistics - pickup, packaging, and international delivery. You order, we handle the rest. No stress, no middlemen.',
+  },
+  {
+    title: 'Real Support When You Need It',
+    body: "Our support team actually responds. Whether it's a question, a concern or a problem - we're here every step of the way.",
+  },
 ];
 
 function JourneyIcon({ id }) {
@@ -319,8 +334,8 @@ function ProductCard({ product }) {
         )}
       </div>
       <div className="px-2 py-2 text-center">
-        <p className="truncate text-[11px] font-semibold text-navy">{product.name}</p>
-        <p className="mt-1 text-[10px] font-medium text-[#8A755F]">?{Number(product.price || 8500).toLocaleString()}</p>
+        <p className="truncate text-[16px] font-semibold text-navy">{product.name}</p>
+        <p className="mt-1 text-[24px] font-medium text-[#6B8F74]">?{Number(product.price || 8500).toLocaleString()}</p>
       </div>
       <div className="px-2 pb-2">
         <Link
@@ -409,22 +424,34 @@ function ProductsSection() {
 
 function WhyChooseSection() {
   return (
-    <section className="bg-white py-12 sm:py-16">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 md:grid-cols-2">
-        <div className="rounded-md bg-[#F7F4EE] p-4 sm:p-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-navy">Why Choose Bryge</h2>
-          <div className="mt-4 space-y-3">
+    <section className="bg-white py-12 sm:py-14">
+      <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-0 px-5 sm:px-8 lg:grid-cols-2">
+        <div className="bg-white pr-6 sm:pr-10 lg:pr-12 lg:min-h-[620px] lg:flex lg:flex-col">
+          <h2 className="font-instrument text-[40px] font-semibold leading-[1.06] text-[#1E3A5F]">Why Choose Bryge</h2>
+          <p className="mt-3 max-w-[420px] text-[16px] leading-[1.2] text-[#1E3A5F]">
+            We didn&apos;t just build a marketplace. We
+            <br />
+            built trust
+          </p>
+
+          <div className="relative mt-8 pl-0 lg:mt-10 lg:flex-1 lg:flex lg:flex-col lg:justify-between">
+            <div className="absolute left-[56px] top-1 bottom-1 w-px bg-[#9BAABE]" />
             {reasons.map((reason, index) => (
-              <div key={reason} className="grid grid-cols-[20px_1fr] items-start gap-2.5 border-b border-[#E7DECF] pb-2.5">
-                <span className="text-[11px] font-semibold text-[#9B8C7C]">{String(index + 1).padStart(2, '0')}</span>
-                <p className="text-[11px] leading-snug text-[#4A5A71]">{reason}</p>
+              <div key={reason.title} className="grid grid-cols-[72px_1fr] items-start gap-4 lg:py-2">
+                <span className="relative z-10 text-[30px] font-semibold leading-none text-[#7F91AA]">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="font-instrument text-[20px] font-semibold leading-[1.12] text-[#1E3A5F]">{reason.title}</h3>
+                  <p className="mt-3 text-[16px] leading-[1.2] text-[#1E3A5F]">{reason.body}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-md">
-          <img src={IMG.whyChoose} alt="Why choose Bryge" className="h-full min-h-[280px] w-full object-cover" />
+        <div className="overflow-hidden">
+          <img src={IMG.whyChoose} alt="Why choose Bryge" className="h-full min-h-[620px] w-full object-cover" />
         </div>
       </div>
     </section>
@@ -433,26 +460,30 @@ function WhyChooseSection() {
 
 function VendorCtaSection() {
   return (
-    <section className="bg-white py-10 sm:py-12">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 gap-3 rounded-lg bg-[#1E3A5F] p-4 sm:grid-cols-[1fr_140px] sm:items-center sm:p-6">
-          <div>
-            <h2 className="text-lg sm:text-xl font-bold leading-tight text-white">
+    <section className="bg-white py-12 sm:py-16">
+      <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-10">
+        <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] p-8 md:grid-cols-2 md:items-center md:gap-10 md:p-10 lg:p-12">
+          <div className="max-w-[520px]">
+            <h2 className="font-instrument text-[40px] font-semibold leading-[1.2] text-white">
               Your Products Deserve a
               <br />
               Global Stage
             </h2>
-            <p className="mt-2 max-w-sm text-[12px] text-white/80">Join Bryge and reach customers around the world.</p>
+            <p className="font-instrument mt-5 max-w-[500px] text-[16px] leading-[1.25] text-white">
+              Thousands of Nigerians abroad are looking for exactly what
+              <br />
+              you sell. Join Bryge and start reaching them today.
+            </p>
             <Link
               to="/vendor/register"
-              className="mt-4 inline-flex justify-center rounded-full bg-white px-4 py-1.5 text-[17px] font-medium text-[#1E3A5F]"
+              className="mt-8 inline-flex min-w-[190px] justify-center rounded-2xl bg-[#F5F1E8] px-6 py-3 text-[17px] font-medium text-[#1E3A5F]"
             >
               Become a Vendor
             </Link>
           </div>
 
-          <div className="overflow-hidden rounded-md">
-            <img src={IMG.vendor} alt="Vendor" className="h-[120px] w-full object-cover sm:h-[100px]" />
+          <div className="overflow-hidden rounded-2xl md:h-full">
+            <img src={IMG.vendor} alt="Vendor" className="h-[280px] w-full object-cover md:h-full md:min-h-[320px]" />
           </div>
         </div>
       </div>
