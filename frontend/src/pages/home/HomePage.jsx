@@ -10,7 +10,7 @@ const IMG = {
   foodstuff: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
   whyChoose: '/brand/why-choose-bryge.jpeg',
   vendor: '/brand/vendor-cta.jpeg',
-  finalBanner: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80',
+  finalBanner: '/brand/final-banner.jpeg',
 };
 
 const journeyCards = [
@@ -493,24 +493,28 @@ function VendorCtaSection() {
 
 function FinalBannerSection() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="relative h-[280px] sm:h-[340px]">
+    <section className="relative overflow-hidden bg-white">
+      <div className="relative h-[620px] sm:h-[700px]">
         <img src={IMG.finalBanner} alt="City background" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-[#0E1C31]/65" />
+        <div className="absolute inset-0 bg-[#0E1C31]/72" />
 
         <div className="relative z-10 flex h-full items-center justify-center px-4 text-center">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-white">
+            <h2 className="font-instrument text-[40px] font-semibold leading-[1.15] text-white">
               Home Is Closer
               <br />
               Than You Think
             </h2>
-            <p className="mt-2 text-xs text-white/85">Bring home to your doorstep, wherever you live.</p>
+            <p className="font-instrument mt-6 max-w-[760px] text-[16px] font-medium leading-[1.35] text-white/95">
+              Start shopping today and get your favourite products
+              <br />
+              delivered straight to your door
+            </p>
             <Link
               to="/shop"
-              className="mt-4 inline-flex justify-center rounded-full bg-white px-4 py-1.5 text-[17px] font-medium text-navy"
+              className="mt-8 inline-flex min-w-[280px] justify-center rounded-[20px] bg-white px-8 py-4 text-[16px] font-medium text-[#1E3A5F]"
             >
-              Start Shopping
+              Shop the Marketplace
             </Link>
           </div>
         </div>
