@@ -249,6 +249,7 @@ function BenefitIcon({ type }) {
 
 export default function VendorLanding() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <div id="top" className="min-h-screen bg-[#F3F3F3]">
@@ -259,10 +260,10 @@ export default function VendorLanding() {
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
-            <a href="#why-bryge" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">Why BRYGE</a>
-            <a href="#founding-vendors" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">Founding Vendors</a>
-            <a href="#how-it-works" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">How It Works</a>
-            <a href="#faq" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">FAQ</a>
+            <a href="#why-bryge" className="text-[16px] font-medium text-navy/85 transition-colors hover:text-navy">Why BRYGE</a>
+            <a href="#founding-vendors" className="text-[16px] font-medium text-navy/85 transition-colors hover:text-navy">Founding Vendors</a>
+            <a href="#how-it-works" className="text-[16px] font-medium text-navy/85 transition-colors hover:text-navy">How It Works</a>
+            <a href="#faq" className="text-[16px] font-medium text-navy/85 transition-colors hover:text-navy">FAQ</a>
           </nav>
 
           <Link
@@ -271,19 +272,58 @@ export default function VendorLanding() {
           >
             Apply as Founding Vendor
           </Link>
+
+          <button
+            type="button"
+            onClick={() => setMobileNavOpen((value) => !value)}
+            className="inline-flex items-center justify-center rounded-md p-2 text-navy lg:hidden"
+            aria-label="Toggle navigation"
+            aria-expanded={mobileNavOpen}
+          >
+            {mobileNavOpen ? (
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 18 18 6" />
+                <path d="m6 6 12 12" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 6h18" />
+                <path d="M3 12h18" />
+                <path d="M3 18h18" />
+              </svg>
+            )}
+          </button>
         </div>
+
+        {mobileNavOpen && (
+          <div className="border-t border-[#D5DCE5] bg-[#F3F3F3] px-6 py-4 lg:hidden">
+            <nav className="space-y-3">
+              <a href="#why-bryge" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">Why BRYGE</a>
+              <a href="#founding-vendors" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">Founding Vendors</a>
+              <a href="#how-it-works" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">How It Works</a>
+              <a href="#faq" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">FAQ</a>
+              <Link
+                to="/vendor/register"
+                onClick={() => setMobileNavOpen(false)}
+                className="mt-4 inline-flex rounded-full bg-rust px-5 py-2.5 text-sm font-semibold text-white"
+              >
+                Apply as Founding Vendor
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
-      <section className="relative h-[520px] md:h-[580px] overflow-hidden">
+      <section className="relative h-[460px] sm:h-[520px] md:h-[580px] overflow-hidden">
         <img
           src="/brand/Vendor%20Header.jpg"
           alt="Vendor hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#13253F]/58" />
+        <div className="absolute inset-0 bg-[#10213A]/72" />
         <div className="relative mx-auto flex h-full w-full max-w-6xl items-center px-6 md:px-8">
           <div className="max-w-[520px] text-white">
-            <h1 className="font-instrument text-[40px] font-medium leading-tight">
+            <h1 className="font-instrument text-[34px] font-medium leading-tight sm:text-[40px]">
               Your Products Deserve a
               <br />
               Global Stage
@@ -301,7 +341,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section id="why-bryge" className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
+      <section id="why-bryge" className="scroll-mt-20 bg-[#F3F3F3] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="text-[16px] font-semibold tracking-wide text-[#6F89A7]">Founding Vendor Applications Now Open</p>
           <h2 className="mt-3 max-w-[620px] font-instrument text-[36px] font-medium leading-tight text-navy">
@@ -352,7 +392,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section id="founding-vendors" className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
+      <section id="founding-vendors" className="scroll-mt-20 bg-[#F3F3F3] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16">
           <div className="max-w-[620px]">
             <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">
@@ -590,7 +630,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section id="how-it-works" className="bg-cream px-6 py-[90px] md:px-10">
+      <section id="how-it-works" className="scroll-mt-20 bg-cream px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <h2 className="max-w-[560px] font-instrument text-[36px] font-medium leading-[1.08] text-navy">How it works</h2>
           <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
@@ -627,7 +667,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section id="faq" className="bg-[#F5F3EC] px-6 py-[90px] md:px-10">
+      <section id="faq" className="scroll-mt-20 bg-[#F5F3EC] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-center font-instrument text-[36px] font-medium leading-[1.08] text-navy">Frequently Asked Questions</h2>
 
@@ -705,7 +745,7 @@ export default function VendorLanding() {
               <p className="mt-5 text-[16px] leading-[1.3] text-white/85">Bridging Markets, Building trust.</p>
             </div>
 
-            <div className="space-y-4 text-[16px] text-white/90">
+            <div className="flex h-full flex-col justify-center space-y-4 text-center text-[16px] text-white/90 md:items-center">
               <a href="mailto:vendors@bryge.com.ng" className="inline-flex items-center gap-2 transition-colors hover:text-white">
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="3" y="5" width="18" height="14" rx="2" />
