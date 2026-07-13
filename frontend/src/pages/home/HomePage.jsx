@@ -139,8 +139,8 @@ function HeroSection() {
 
         <div className="relative z-10 flex h-full items-center">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-            <div className="max-w-[640px] text-white">
-              <h1 className="font-instrument text-[54px] font-semibold leading-[1.08] tracking-[-0.02em]">
+            <div className="max-w-[680px] text-white">
+              <h1 className="font-instrument text-[54px] font-semibold leading-[1.14] tracking-[-0.02em]">
                 You Left Home. But
                 <br />
                 Home Doesn&apos;t Have to
@@ -148,13 +148,13 @@ function HeroSection() {
                 Leave You.
               </h1>
 
-              <p className="font-instrument mt-3 max-w-[520px] text-[14px] leading-snug font-medium text-white/90">
+              <p className="font-instrument mt-5 max-w-[560px] text-[14px] leading-[1.4] font-medium text-white/90">
                 Shop your favourite products from verified vendors, delivered
                 <br />
                 straight to you, no stress, no hassle.
               </p>
 
-              <div className="mt-6 flex items-center gap-2.5">
+              <div className="mt-8 flex items-center gap-4">
                 <Link
                   to="/shop"
                   className="rounded-xl bg-rust px-8 py-3 text-[17px] font-medium text-white transition-colors hover:bg-rust-dark"
@@ -226,7 +226,9 @@ function CategoriesSection() {
             Been Missing
           </h2>
           <p className="font-instrument mx-auto mt-3 max-w-[500px] text-[16px] leading-[1.25] text-[#1E3A5F]/70">
-            From fabrics to flavours, browse authentic products curated just for you.
+            From fabrics to flavours, browse authentic
+            <br />
+            products curated just for you.
           </p>
         </div>
 
@@ -335,7 +337,7 @@ function ProductCard({ product }) {
       </div>
       <div className="px-2 py-2 text-center">
         <p className="truncate text-[16px] font-semibold text-navy">{product.name}</p>
-        <p className="mt-1 text-[24px] font-medium text-[#6B8F74]">?{Number(product.price || 8500).toLocaleString()}</p>
+        <p className="mt-1 text-[24px] font-medium text-[#6B8F74]">₦{Number(product.price || 8500).toLocaleString()}</p>
       </div>
       <div className="px-2 pb-2">
         <Link

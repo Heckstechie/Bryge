@@ -65,6 +65,7 @@ import VendorWithdraw        from './pages/vendor/VendorWithdraw';
 import VendorTransactions    from './pages/vendor/VendorTransactions';
 import VendorNotifications   from './pages/vendor/VendorNotifications';
 import VendorSettings        from './pages/vendor/VendorSettings';
+import VendorLanding        from './pages/vendor/VendorLanding';
 
 // ── Shop (public storefront) ──────────────────────────────────────────────────
 import ShopPage          from './pages/shop/ShopPage';
@@ -145,6 +146,7 @@ function AppRoutes() {
       <Route path="/reset-password"   element={<ResetPassword />} />
 
       {/* ── Vendor auth ── */}
+      <Route path="/vendor"                 element={<VendorLanding />} />
       <Route path="/vendor/login"           element={<GuestRoute><VendorLogin /></GuestRoute>} />
       <Route path="/vendor/register"        element={<GuestRoute><VendorRegister /></GuestRoute>} />
       <Route path="/vendor/verify-email"    element={<VendorVerifyEmail />} />

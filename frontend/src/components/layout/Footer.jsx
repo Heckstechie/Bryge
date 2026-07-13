@@ -5,7 +5,7 @@ const PAGES = [
   { label: 'Shop Page',       to: '/shop' },
   { label: 'My Account',      to: '/dashboard' },
   { label: 'Track My Order',  to: '/dashboard/orders' },
-  { label: 'Become a Vendor', to: '/vendor/register' },
+  { label: 'Become a Vendor', to: '/vendor' },
 ];
 
 const COMPANY = [
