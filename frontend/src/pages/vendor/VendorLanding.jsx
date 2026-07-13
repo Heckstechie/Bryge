@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ShopNavbar from '../../components/layout/ShopNavbar';
-import Footer from '../../components/layout/Footer';
 
 const featureCards = [
   {
@@ -253,8 +251,28 @@ export default function VendorLanding() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   return (
-    <div className="min-h-screen bg-[#F3F3F3]">
-      <ShopNavbar white />
+    <div id="top" className="min-h-screen bg-[#F3F3F3]">
+      <header className="sticky top-0 z-50 border-b border-[#D5DCE5] bg-[#F3F3F3]/95 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-6 md:px-8">
+          <Link to="/vendor" className="shrink-0">
+            <img src="/brand/logo-full-black.png" alt="Bryge" className="h-auto w-28" />
+          </Link>
+
+          <nav className="hidden items-center gap-8 lg:flex">
+            <a href="#why-bryge" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">Why BRYGE</a>
+            <a href="#founding-vendors" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">Founding Vendors</a>
+            <a href="#how-it-works" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">How It Works</a>
+            <a href="#faq" className="text-[18px] font-medium text-navy/85 transition-colors hover:text-navy">FAQ</a>
+          </nav>
+
+          <Link
+            to="/vendor/register"
+            className="hidden rounded-full bg-rust px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-rust-dark md:inline-flex"
+          >
+            Apply as Founding Vendor
+          </Link>
+        </div>
+      </header>
 
       <section className="relative h-[520px] md:h-[580px] overflow-hidden">
         <img
@@ -283,7 +301,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
+      <section id="why-bryge" className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="text-[16px] font-semibold tracking-wide text-[#6F89A7]">Founding Vendor Applications Now Open</p>
           <h2 className="mt-3 max-w-[620px] font-instrument text-[36px] font-medium leading-tight text-navy">
@@ -334,7 +352,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
+      <section id="founding-vendors" className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16">
           <div className="max-w-[620px]">
             <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">
@@ -572,7 +590,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section className="bg-cream px-6 py-[90px] md:px-10">
+      <section id="how-it-works" className="bg-cream px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
           <h2 className="max-w-[560px] font-instrument text-[36px] font-medium leading-[1.08] text-navy">How it works</h2>
           <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
@@ -609,7 +627,7 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section className="bg-[#F5F3EC] px-6 py-[90px] md:px-10">
+      <section id="faq" className="bg-[#F5F3EC] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-center font-instrument text-[36px] font-medium leading-[1.08] text-navy">Frequently Asked Questions</h2>
 
@@ -679,7 +697,48 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <Footer />
+      <footer className="bg-[#1E3A5F] px-6 py-14 md:px-10 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+            <div>
+              <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="h-auto w-32" />
+              <p className="mt-5 text-[16px] leading-[1.3] text-white/85">Bridging Markets, Building trust.</p>
+            </div>
+
+            <div className="space-y-4 text-[16px] text-white/90">
+              <a href="mailto:vendors@bryge.com.ng" className="inline-flex items-center gap-2 transition-colors hover:text-white">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m4 7 8 6 8-6" />
+                </svg>
+                vendors@bryge.com.ng
+              </a>
+              <a href="https://x.com/brygehq" target="_blank" rel="noreferrer" className="block transition-colors hover:text-white">@brygehq</a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="block transition-colors hover:text-white">LinkedIn</a>
+            </div>
+
+            <nav className="space-y-4 text-[16px] text-white/90 md:justify-self-end md:text-right">
+              <a href="#why-bryge" className="block transition-colors hover:text-white">Why BRYGE</a>
+              <a href="#how-it-works" className="block transition-colors hover:text-white">How It Works</a>
+              <a href="#faq" className="block transition-colors hover:text-white">FAQ</a>
+              <a href="/vendor/register" className="block transition-colors hover:text-white">Apply</a>
+            </nav>
+          </div>
+
+          <div className="mt-10 border-t border-white/15 pt-7">
+            <div className="flex flex-col gap-4 text-[15px] text-white/75 md:flex-row md:items-center md:justify-between">
+              <p>© 2026 BRYGE. All rights reserved.</p>
+              <a href="#top" className="inline-flex items-center gap-2 transition-colors hover:text-white">
+                Back to top
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 18V6" />
+                  <path d="m7 11 5-5 5 5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
