@@ -262,7 +262,7 @@ export default function VendorLanding() {
           alt="Vendor hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#13253F]/45" />
+        <div className="absolute inset-0 bg-[#13253F]/58" />
         <div className="relative mx-auto flex h-full w-full max-w-6xl items-center px-6 md:px-8">
           <div className="max-w-[520px] text-white">
             <h1 className="font-instrument text-[40px] font-medium leading-tight">
@@ -275,7 +275,7 @@ export default function VendorLanding() {
             </p>
             <Link
               to="/vendor/register"
-              className="mt-6 inline-flex rounded-xl bg-white px-6 py-3 text-sm font-semibold text-navy"
+              className="mt-6 inline-flex rounded-xl bg-white px-6 py-3 text-sm font-semibold text-navy transition-colors duration-200 hover:bg-[#1E3A5F] hover:text-white active:bg-[#1E3A5F] active:text-white"
             >
               Start Selling Today
             </Link>
@@ -394,7 +394,7 @@ export default function VendorLanding() {
             </p>
           </div>
 
-          <p className="mt-6 max-w-[760px] font-instrument text-[24px] font-medium leading-[1.2] text-white">
+          <p className="my-[30px] max-w-[760px] font-instrument text-[24px] font-medium leading-[1.2] text-white">
             Our Founding Vendors won&apos;t simply join BRYGE.
             <br />
             They&apos;ll help shape it.
@@ -528,13 +528,14 @@ export default function VendorLanding() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
-            <div className="border-l border-[#9FB0C3] pl-5">
+            <div className="relative">
+              <div className="absolute bottom-0 left-[66px] top-0 w-px bg-[#9FB0C3]" aria-hidden="true" />
               <div className="space-y-7">
                 {launchCategories.map((category, index) => (
-                  <div key={category.title} className="grid grid-cols-[56px_1fr] gap-4">
-                    <p className="text-[40px] leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
-                    <div>
-                      <h3 className="text-[24px] font-semibold leading-[1.2] text-navy">{category.title}</h3>
+                  <div key={category.title} className="grid grid-cols-[56px_1fr] gap-10">
+                    <p className="text-[25px] leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
+                    <div className="pl-2">
+                      <h3 className="text-[20px] font-medium leading-[1.2] text-navy">{category.title}</h3>
                       <p className="mt-2 max-w-[460px] text-[16px] leading-[1.25] text-[#5F7087]">{category.body}</p>
                     </div>
                   </div>
@@ -599,8 +600,8 @@ export default function VendorLanding() {
             <div className="space-y-8 md:space-y-10">
               {beliefRows.map((belief, index) => (
                 <div key={belief} className="grid grid-cols-[56px_1fr] gap-4 md:grid-cols-[72px_1fr] md:gap-6">
-                  <p className="relative z-10 text-[48px] leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
-                  <p className="max-w-[900px] pl-6 text-[24px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
+                  <p className="relative z-10 text-[25px] font-medium leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
+                  <p className="max-w-[900px] pl-6 text-[19px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
                 </div>
               ))}
             </div>
@@ -624,7 +625,7 @@ export default function VendorLanding() {
                     className="flex w-full items-center justify-between gap-6 py-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-instrument text-[24px] font-medium leading-[1.2] text-navy">{item.question}</span>
+                    <span className="font-instrument text-[21px] font-medium leading-[1.2] text-navy">{item.question}</span>
                     <svg
                       viewBox="0 0 24 24"
                       className={`h-6 w-6 shrink-0 text-[#7C8EA6] transition-transform ${isOpen ? 'rotate-180' : ''}`}
