@@ -370,7 +370,7 @@ export default function VendorLanding() {
             </p>
           </div>
 
-          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[20px] text-white md:mt-16 md:p-[50px]">
+          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[40px] text-white md:mt-16 md:p-[50px]">
             <h3 className="font-instrument text-[25px] font-medium leading-[1.05] md:text-[44px]">Why BRYGE exists</h3>
             <div className="mt-4 max-w-[940px] space-y-4 text-[16px] leading-[1.35] text-white/95 md:mt-8 md:text-[20px] md:leading-[1.2]">
               <p>Nigeria is home to remarkable businesses.</p>
@@ -654,12 +654,12 @@ export default function VendorLanding() {
           <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">What we believe</h2>
 
           <div className="relative mt-10">
-            <div className="absolute bottom-0 left-[62px] top-0 w-px bg-[#9FB0C3] md:left-[92px]" aria-hidden="true" />
+            <div className="absolute bottom-0 left-[70px] top-0 w-px bg-[#9FB0C3] md:left-[92px]" aria-hidden="true" />
             <div className="space-y-8 md:space-y-10">
               {beliefRows.map((belief, index) => (
-                <div key={belief} className="grid grid-cols-[44px_1fr] gap-2 md:grid-cols-[72px_1fr] md:gap-6">
+                <div key={belief} className="grid grid-cols-[44px_1fr] gap-4 md:grid-cols-[72px_1fr] md:gap-6">
                   <p className="relative z-10 text-[25px] font-medium leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
-                  <p className="max-w-[900px] pl-3 text-[19px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
+                  <p className="max-w-[900px] pl-5 text-[19px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
                 </div>
               ))}
             </div>
@@ -710,8 +710,8 @@ export default function VendorLanding() {
 
       <section className="bg-[#F3F3F3] px-[6px] py-[90px] md:px-10">
         <div className="mx-auto w-full max-w-[1240px] px-0 sm:px-10">
-          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-[8px] pt-[48px] pb-[8px] md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
-            <div className="max-w-[520px] px-[8px] pb-6 md:px-0 md:pb-0">
+          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-[40px] pt-[40px] pb-[40px] md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
+            <div className="max-w-[520px] px-0 pb-6 md:pb-0">
               <h3 className="font-instrument text-[30px] font-medium leading-[1.2] text-white md:text-[40px]">
                 Your Products Deserve a
                 <br />
@@ -730,7 +730,7 @@ export default function VendorLanding() {
               </Link>
             </div>
 
-            <div className="overflow-hidden rounded-2xl px-[8px] pb-[8px] md:h-full md:px-0 md:pb-0">
+            <div className="overflow-hidden rounded-2xl px-0 pb-0 md:h-full">
               <img src="/brand/vendor-cta.jpeg" alt="Vendor call to action" className="h-[280px] w-full object-cover md:h-full md:min-h-[320px]" />
             </div>
           </div>
