@@ -370,8 +370,8 @@ export default function VendorLanding() {
             </p>
           </div>
 
-          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[10px] text-white md:mt-16 md:p-[50px]">
-            <h3 className="font-instrument text-[16px] font-medium leading-[1.05] md:text-[44px]">Why BRYGE exists</h3>
+          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[20px] text-white md:mt-16 md:p-[50px]">
+            <h3 className="font-instrument text-[25px] font-medium leading-[1.05] md:text-[44px]">Why BRYGE exists</h3>
             <div className="mt-4 max-w-[940px] space-y-4 text-[16px] leading-[1.35] text-white/95 md:mt-8 md:text-[20px] md:leading-[1.2]">
               <p>Nigeria is home to remarkable businesses.</p>
               <p>Businesses built on craftsmanship, creativity, resilience and years of experience.</p>
@@ -708,10 +708,10 @@ export default function VendorLanding() {
         </div>
       </section>
 
-      <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
-        <div className="mx-auto w-full max-w-[1240px] px-[10px] sm:px-10">
-          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-[10px] pt-[50px] pb-[10px] md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
-            <div className="max-w-[520px] px-[10px] pb-6 md:px-0 md:pb-0">
+      <section className="bg-[#F3F3F3] px-[6px] py-[90px] md:px-10">
+        <div className="mx-auto w-full max-w-[1240px] px-0 sm:px-10">
+          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-[8px] pt-[48px] pb-[8px] md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
+            <div className="max-w-[520px] px-[8px] pb-6 md:px-0 md:pb-0">
               <h3 className="font-instrument text-[30px] font-medium leading-[1.2] text-white md:text-[40px]">
                 Your Products Deserve a
                 <br />
@@ -730,7 +730,7 @@ export default function VendorLanding() {
               </Link>
             </div>
 
-            <div className="overflow-hidden rounded-2xl px-[10px] pb-[10px] md:h-full md:px-0 md:pb-0">
+            <div className="overflow-hidden rounded-2xl px-[8px] pb-[8px] md:h-full md:px-0 md:pb-0">
               <img src="/brand/vendor-cta.jpeg" alt="Vendor call to action" className="h-[280px] w-full object-cover md:h-full md:min-h-[320px]" />
             </div>
           </div>
