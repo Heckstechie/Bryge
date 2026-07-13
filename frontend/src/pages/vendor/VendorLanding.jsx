@@ -320,10 +320,10 @@ export default function VendorLanding() {
           alt="Vendor hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#10213A]/72" />
+        <div className="absolute inset-0 bg-[#10213A]/80" />
         <div className="relative mx-auto flex h-full w-full max-w-6xl items-center px-6 md:px-8">
           <div className="max-w-[520px] text-white">
-            <h1 className="font-instrument text-[34px] font-medium leading-tight sm:text-[40px]">
+            <h1 className="font-instrument text-[30px] font-medium leading-tight sm:text-[34px] md:text-[40px]">
               Your Products Deserve a
               <br />
               Global Stage
@@ -344,7 +344,7 @@ export default function VendorLanding() {
       <section id="why-bryge" className="scroll-mt-20 bg-[#F3F3F3] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="text-[16px] font-semibold tracking-wide text-[#6F89A7]">Founding Vendor Applications Now Open</p>
-          <h2 className="mt-3 max-w-[620px] font-instrument text-[36px] font-medium leading-tight text-navy">
+          <h2 className="mt-3 max-w-[620px] font-instrument text-[30px] font-medium leading-tight text-navy md:text-[36px]">
             You've built something worth
             <br />
             sharing with the world.
@@ -370,9 +370,9 @@ export default function VendorLanding() {
             </p>
           </div>
 
-          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[50px] text-white md:mt-16">
-            <h3 className="font-instrument text-[44px] font-medium leading-[1.05]">Why BRYGE exists</h3>
-            <div className="mt-8 max-w-[940px] space-y-4 text-[20px] leading-[1.2] text-white/95">
+          <div className="mt-12 rounded-2xl bg-[#1E3A5F] p-[10px] text-white md:mt-16 md:p-[50px]">
+            <h3 className="font-instrument text-[16px] font-medium leading-[1.05] md:text-[44px]">Why BRYGE exists</h3>
+            <div className="mt-4 max-w-[940px] space-y-4 text-[16px] leading-[1.35] text-white/95 md:mt-8 md:text-[20px] md:leading-[1.2]">
               <p>Nigeria is home to remarkable businesses.</p>
               <p>Businesses built on craftsmanship, creativity, resilience and years of experience.</p>
               <p>Yet too many remain difficult for global customers to discover, trust and purchase from.</p>
@@ -395,7 +395,7 @@ export default function VendorLanding() {
       <section id="founding-vendors" className="scroll-mt-20 bg-[#F3F3F3] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16">
           <div className="max-w-[620px]">
-            <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">
+            <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">
               Great businesses shouldn&apos;t be
               <br />
               limited by geography.
@@ -415,7 +415,7 @@ export default function VendorLanding() {
             </div>
 
             <div className="mt-10 border-l border-[#8FA0B5] pl-4">
-              <p className="text-[24px] font-semibold leading-[1.15] text-[#8698AE]">
+              <p className="text-[25px] font-semibold leading-[1.15] text-[#8698AE] md:text-[24px]">
                 Your products deserve to be discovered.
                 <br />
                 Not because they&apos;re Nigerian.
@@ -437,7 +437,7 @@ export default function VendorLanding() {
 
       <section className="bg-[#1E3A5F] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-white">
+          <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-white md:text-[36px]">
             Why we&apos;re inviting businesses before launch
           </h2>
 
@@ -452,7 +452,7 @@ export default function VendorLanding() {
             </p>
           </div>
 
-          <p className="my-[30px] max-w-[760px] font-instrument text-[24px] font-medium leading-[1.2] text-white">
+          <p className="my-[30px] max-w-[760px] font-instrument text-[25px] font-medium leading-[1.2] text-white md:text-[24px]">
             Our Founding Vendors won&apos;t simply join BRYGE.
             <br />
             They&apos;ll help shape it.
@@ -470,7 +470,7 @@ export default function VendorLanding() {
 
       <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl text-navy">
-          <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">
+          <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">
             Why become a Founding Vendor?
           </h2>
 
@@ -502,7 +502,7 @@ export default function VendorLanding() {
 
       <section className="bg-[#F5F3EC] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">Imagine what could be possible.</h2>
+          <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">Imagine what could be possible.</h2>
 
           <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-10 md:gap-y-9">
             {imagineCards.map((card, index) => (
@@ -535,7 +535,7 @@ export default function VendorLanding() {
           </div>
 
           <div className="max-w-[760px] text-navy">
-            <h2 className="font-instrument text-[36px] font-medium leading-[1.12] text-navy">
+            <h2 className="font-instrument text-[30px] font-medium leading-[1.12] text-navy md:text-[36px]">
               We&apos;re building with people, not
               <br />
               just products.
@@ -580,19 +580,19 @@ export default function VendorLanding() {
 
       <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">Our Initial Launch Categories</h2>
+          <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">Our Initial Launch Categories</h2>
           <p className="mt-4 max-w-[420px] text-[16px] leading-[1.28] text-[#5F7087]">
             We&apos;re currently welcoming applications from businesses across our initial launch categories.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
             <div className="relative">
-              <div className="absolute bottom-0 left-[66px] top-0 w-px bg-[#9FB0C3]" aria-hidden="true" />
+              <div className="absolute bottom-0 left-[52px] top-0 w-px bg-[#9FB0C3] md:left-[66px]" aria-hidden="true" />
               <div className="space-y-7">
                 {launchCategories.map((category, index) => (
-                  <div key={category.title} className="grid grid-cols-[56px_1fr] gap-10">
+                  <div key={category.title} className="grid grid-cols-[42px_1fr] gap-5 md:grid-cols-[56px_1fr] md:gap-10">
                     <p className="text-[25px] leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
-                    <div className="pl-2">
+                    <div className="pl-1 md:pl-2">
                       <h3 className="text-[20px] font-medium leading-[1.2] text-navy">{category.title}</h3>
                       <p className="mt-2 max-w-[460px] text-[16px] leading-[1.25] text-[#5F7087]">{category.body}</p>
                     </div>
@@ -632,7 +632,7 @@ export default function VendorLanding() {
 
       <section id="how-it-works" className="scroll-mt-20 bg-cream px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="max-w-[560px] font-instrument text-[36px] font-medium leading-[1.08] text-navy">How it works</h2>
+          <h2 className="max-w-[560px] font-instrument text-[30px] font-medium leading-[1.08] text-navy md:text-[36px]">How it works</h2>
           <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
             {featureCards.map((card) => (
               <article key={card.title} className={`relative min-h-[220px] rounded-xl px-5 pt-14 ${card.tone}`}>
@@ -651,15 +651,15 @@ export default function VendorLanding() {
 
       <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-instrument text-[36px] font-medium leading-[1.1] text-navy">What we believe</h2>
+          <h2 className="font-instrument text-[30px] font-medium leading-[1.1] text-navy md:text-[36px]">What we believe</h2>
 
           <div className="relative mt-10">
-            <div className="absolute bottom-0 left-[76px] top-0 w-px bg-[#9FB0C3] md:left-[92px]" aria-hidden="true" />
+            <div className="absolute bottom-0 left-[62px] top-0 w-px bg-[#9FB0C3] md:left-[92px]" aria-hidden="true" />
             <div className="space-y-8 md:space-y-10">
               {beliefRows.map((belief, index) => (
-                <div key={belief} className="grid grid-cols-[56px_1fr] gap-4 md:grid-cols-[72px_1fr] md:gap-6">
+                <div key={belief} className="grid grid-cols-[44px_1fr] gap-2 md:grid-cols-[72px_1fr] md:gap-6">
                   <p className="relative z-10 text-[25px] font-medium leading-none text-[#97A8BD]">{String(index + 1).padStart(2, '0')}</p>
-                  <p className="max-w-[900px] pl-6 text-[19px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
+                  <p className="max-w-[900px] pl-3 text-[19px] font-medium leading-[1.2] text-[#5F7087] md:pl-8">{belief}</p>
                 </div>
               ))}
             </div>
@@ -669,7 +669,7 @@ export default function VendorLanding() {
 
       <section id="faq" className="scroll-mt-20 bg-[#F5F3EC] px-6 py-[90px] md:scroll-mt-24 md:px-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center font-instrument text-[36px] font-medium leading-[1.08] text-navy">Frequently Asked Questions</h2>
+          <h2 className="text-center font-instrument text-[30px] font-medium leading-[1.08] text-navy md:text-[36px]">Frequently Asked Questions</h2>
 
           <div className="mx-auto mt-12 max-w-[900px]">
             {faqItems.map((item, index) => {
@@ -683,7 +683,7 @@ export default function VendorLanding() {
                     className="flex w-full items-center justify-between gap-6 py-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-instrument text-[21px] font-medium leading-[1.2] text-navy">{item.question}</span>
+                    <span className="font-instrument text-[20px] font-medium leading-[1.2] text-navy">{item.question}</span>
                     <svg
                       viewBox="0 0 24 24"
                       className={`h-6 w-6 shrink-0 text-[#7C8EA6] transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -709,10 +709,10 @@ export default function VendorLanding() {
       </section>
 
       <section className="bg-[#F3F3F3] px-6 py-[90px] md:px-10">
-        <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-10">
-          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-8 pt-[90px] pb-8 md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
-            <div className="max-w-[520px]">
-              <h3 className="font-instrument text-[40px] font-medium leading-[1.2] text-white">
+        <div className="mx-auto w-full max-w-[1240px] px-[10px] sm:px-10">
+          <div className="grid grid-cols-1 gap-8 rounded-[18px] bg-[#1E3A5F] px-[10px] pt-[50px] pb-[10px] md:grid-cols-2 md:items-center md:gap-10 md:px-10 md:pb-10 lg:px-12 lg:pb-12">
+            <div className="max-w-[520px] px-[10px] pb-6 md:px-0 md:pb-0">
+              <h3 className="font-instrument text-[30px] font-medium leading-[1.2] text-white md:text-[40px]">
                 Your Products Deserve a
                 <br />
                 Global Stage
@@ -730,7 +730,7 @@ export default function VendorLanding() {
               </Link>
             </div>
 
-            <div className="overflow-hidden rounded-2xl md:h-full">
+            <div className="overflow-hidden rounded-2xl px-[10px] pb-[10px] md:h-full md:px-0 md:pb-0">
               <img src="/brand/vendor-cta.jpeg" alt="Vendor call to action" className="h-[280px] w-full object-cover md:h-full md:min-h-[320px]" />
             </div>
           </div>
@@ -745,7 +745,7 @@ export default function VendorLanding() {
               <p className="mt-5 text-[16px] leading-[1.3] text-white/85">Bridging Markets, Building trust.</p>
             </div>
 
-            <div className="flex h-full flex-col justify-center space-y-4 text-center text-[16px] text-white/90 md:items-center">
+            <div className="space-y-4 text-[16px] text-white/90">
               <a href="mailto:vendors@bryge.com.ng" className="inline-flex items-center gap-2 transition-colors hover:text-white">
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="3" y="5" width="18" height="14" rx="2" />
