@@ -280,7 +280,9 @@ export default function VendorLanding() {
           </nav>
 
           <Link
-            to="/vendor/register"
+            to="https://tally.so/r/zxOg9q"
+            target="_blank"
+            rel="noreferrer"
             className="hidden rounded-full bg-rust px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-rust-dark md:inline-flex"
           >
             Apply as Founding Vendor
@@ -316,7 +318,9 @@ export default function VendorLanding() {
               <a href="#how-it-works" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">How It Works</a>
               <a href="#faq" onClick={() => setMobileNavOpen(false)} className="block text-[16px] font-medium text-navy/90">FAQ</a>
               <Link
-                to="/vendor/register"
+                to="https://tally.so/r/zxOg9q"
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setMobileNavOpen(false)}
                 className="mt-4 inline-flex rounded-full bg-rust px-5 py-2.5 text-sm font-semibold text-white"
               >
@@ -345,7 +349,9 @@ export default function VendorLanding() {
               Sell to Nigerians abroad who are already looking for what you make. No cold pitching. Just a direct line to your market.
             </p>
             <Link
-              to="/vendor/register"
+              to="https://tally.so/r/zxOg9q"
+              target="_blank"
+              rel="noreferrer"
               className="mt-6 inline-flex rounded-xl bg-white px-6 py-3 text-sm font-semibold text-navy transition-colors duration-200 hover:bg-[#1E3A5F] hover:text-white active:bg-[#1E3A5F] active:text-white"
             >
               Start Selling Today
@@ -736,7 +742,9 @@ export default function VendorLanding() {
                 you sell. Join Bryge and start reaching them today.
               </p>
               <Link
-                to="/vendor/register"
+                to="https://tally.so/r/zxOg9q"
+                target="_blank"
+                rel="noreferrer"
                 className="mt-8 inline-flex min-w-[190px] justify-center rounded-2xl bg-[#F5F1E8] px-6 py-3 text-[17px] font-medium text-[#1E3A5F]"
               >
                 Become a Vendor
@@ -782,7 +790,7 @@ export default function VendorLanding() {
               <a href="#why-bryge" className="block transition-colors hover:text-white">Why BRYGE</a>
               <a href="#how-it-works" className="block transition-colors hover:text-white">How It Works</a>
               <a href="#faq" className="block transition-colors hover:text-white">FAQ</a>
-              <a href="/vendor/register" className="block transition-colors hover:text-white">Apply</a>
+              <a href="https://tally.so/r/zxOg9q" target="_blank" rel="noreferrer" className="block transition-colors hover:text-white">Apply</a>
             </nav>
           </div>
 
