@@ -34,24 +34,28 @@ const launchCategories = [
     body: 'Ankara designers, fabric merchants, traditional wear makers, and contemporary Nigerian fashion brands.',
   },
   {
-    title: 'Food & Groceries',
-    body: 'Dried and packaged Nigerian foods, spices, condiments, palm oil, crayfish, egusi, and specialty ingredients the diaspora cannot easily find abroad.',
-  },
-  {
-    title: 'Beauty & Skincare',
-    body: 'Natural haircare, African black soap, shea butter, oils, and skincare products rooted in Nigerian ingredients and tradition.',
-  },
-  {
-    title: 'Crafts & Home Goods',
-    body: 'Handmade crafts, beaded jewellery, woodwork, pottery, woven baskets, and home decor with genuine Nigerian origin.',
-  },
-  {
-    title: 'Health & Wellness',
-    body: 'Herbal products, traditional supplements, and wellness goods from verified producers with proper documentation.',
+    title: 'Fashion & Ready-to-Wear',
+    body: 'Modern ready-to-wear caftans, Agbada tailors, contemporary streetwear, hand-dyed Adire outfits, and everyday Afrocentric apparel.',
   },
   {
     title: 'Accessories & Jewellery',
-    body: 'Beaded necklaces, waist beads, earrings, bangles, and statement pieces rooted in Nigerian craft tradition, made by artisans who have been perfecting their work for generations.',
+    body: 'Handcrafted leather bags, statement coral beads, brass and gold-plated jewelry, and custom-designed cultural fashion accessories.',
+  },
+  {
+    title: 'Nigerian Snacks',
+    body: 'Gourmet chin chin, crunchy plantain chips, spiced kuli kuli, premium cashew nuts, local tea blends, and packaged traditional treats.',
+  },
+  {
+    title: 'Lifestyle Products',
+    body: 'Scented candles, heritage-themed journals, Afrocentric stationery, wellness items, and curated gifts celebrating modern Nigerian life.',
+  },
+  {
+    title: 'Home & Living',
+    body: 'Handwoven throw pillows, local art prints, carved woodwork, unique table runners, and hand-carved pottery or contemporary home decor.',
+  },
+  {
+    title: 'Beauty & Personal Care',
+    body: 'Organic African black soap, whipped shea butter, herbal hair growth oils, and natural skincare products formulated with local botanical ingredients.',
   },
 ];
 
@@ -250,13 +254,22 @@ function BenefitIcon({ type }) {
 export default function VendorLanding() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const navyWordmarkFilter = 'brightness(0) saturate(100%) invert(19%) sepia(38%) saturate(1081%) hue-rotate(172deg) brightness(93%) contrast(93%)';
 
   return (
     <div id="top" className="min-h-screen bg-[#F3F3F3]">
       <header className="sticky top-0 z-50 border-b border-[#D5DCE5] bg-[#F3F3F3]/95 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-6 md:px-8">
           <Link to="/vendor" className="shrink-0">
-            <img src="/brand/logo-full-black.png" alt="Bryge" className="h-auto w-28" />
+            <span className="inline-flex items-center gap-2.5">
+              <img src="/brand/logo-icon-navy.png" alt="Bryge icon" className="h-7 w-7" />
+              <img
+                src="/brand/logo-full-black.png"
+                alt="Bryge"
+                className="h-auto w-28"
+                style={{ filter: navyWordmarkFilter }}
+              />
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -490,7 +503,7 @@ export default function VendorLanding() {
                 key={item}
                 className="min-h-[92px] rounded-[14px] border border-[#C8D2E0] bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
               >
-                <div className="h-6 w-6 text-[#546B8D]">
+                <div className="h-6 w-6 text-[#6B8F74]">
                   <BenefitIcon type={item.icon} />
                 </div>
                 <p className="mt-4 max-w-[240px] text-[16px] leading-[1.25] text-[#5F7087]">{item.title}</p>
@@ -741,7 +754,15 @@ export default function VendorLanding() {
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
             <div>
-              <img src="/brand/logo-wordmark-cream.png" alt="Bryge" className="h-auto w-32" />
+              <div className="inline-flex items-center gap-2.5 rounded-xl bg-[#F5F1E8] px-3 py-2">
+                <img src="/brand/logo-icon-navy.png" alt="Bryge icon" className="h-7 w-7" />
+                <img
+                  src="/brand/logo-full-black.png"
+                  alt="Bryge"
+                  className="h-auto w-32"
+                  style={{ filter: navyWordmarkFilter }}
+                />
+              </div>
               <p className="mt-5 text-[16px] leading-[1.3] text-white/85">Bridging Markets, Building trust.</p>
             </div>
 
