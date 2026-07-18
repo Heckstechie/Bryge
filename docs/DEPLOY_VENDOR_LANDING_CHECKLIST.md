@@ -167,15 +167,17 @@ Handover reminder:
 After local edits:
 
 ```bash
-# on VPS
-cd /var/www/bryge-src
-# git pull
-cd frontend
-npm install
-npm run build
-sudo rsync -a --delete /var/www/bryge-src/frontend/dist/ /var/www/bryge/
-sudo nginx -t
-sudo systemctl reload nginx
+# one-time setup on VPS (from /var/www/bryge-src)
+chmod +x scripts/deploy-vendor-landing.sh
+
+# run each time you want to publish latest main
+./scripts/deploy-vendor-landing.sh
+```
+
+Optional overrides:
+
+```bash
+PROJECT_ROOT=/var/www/bryge-src TARGET_DIR=/var/www/bryge BRANCH=main ./scripts/deploy-vendor-landing.sh
 ```
 
 - [ ] New version visible on domain
