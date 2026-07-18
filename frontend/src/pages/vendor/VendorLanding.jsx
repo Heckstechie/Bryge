@@ -31,15 +31,15 @@ const featureCards = [
 const launchCategories = [
   {
     title: 'Fabrics & Textiles',
-    body: 'Ankara designers, fabric merchants, traditional wear makers, and contemporary Nigerian fashion brands.',
+    body: 'Ankara, Akwete, Akwa ocha, aso oke and other traditional wears',
   },
   {
     title: 'Fashion & Ready-to-Wear',
-    body: 'Modern ready-to-wear caftans, Agbada tailors, contemporary streetwear, hand-dyed Adire outfits, and everyday Afrocentric apparel.',
+    body: 'Ankara, contemporary aso oke, Agbada tailors, contemporary streetwear, hand-dyed Adire outfits, and everyday Afrocentric apparel.',
   },
   {
     title: 'Accessories & Jewellery',
-    body: 'Handcrafted leather bags, statement coral beads, brass and gold-plated jewelry, and custom-designed cultural fashion accessories.',
+    body: 'Handcrafted leather bags, statement coral beads, handfans, staffs, auto-gele, and custom-designed cultural fashion accessories.',
   },
   {
     title: 'Nigerian Snacks',
@@ -47,15 +47,11 @@ const launchCategories = [
   },
   {
     title: 'Lifestyle Products',
-    body: 'Scented candles, heritage-themed journals, Afrocentric stationery, wellness items, and curated gifts celebrating modern Nigerian life.',
+    body: 'Heritage-themed journals, Afrocentric stationery, wellness items, and curated gifts celebrating modern Nigerian life.',
   },
   {
-    title: 'Home & Living',
+    title: 'Art & Handmade goods',
     body: 'Handwoven throw pillows, local art prints, carved woodwork, unique table runners, and hand-carved pottery or contemporary home decor.',
-  },
-  {
-    title: 'Beauty & Personal Care',
-    body: 'Organic African black soap, whipped shea butter, herbal hair growth oils, and natural skincare products formulated with local botanical ingredients.',
   },
 ];
 
