@@ -616,13 +616,13 @@ export default function VendorLanding() {
             <div className="mx-auto w-full max-w-[620px] lg:mx-0">
               <div className="relative h-[560px] w-full md:h-[620px]">
                 <div className="absolute right-0 top-0 z-20 overflow-hidden">
-                  <img src="/brand/Who%20sells%201.jpg" alt="Market transaction" className="h-[250px] w-[330px] object-cover md:h-[300px] md:w-[380px]" />
+                  <img src="/brand/IMG_2555.JPG.jpeg" alt="Market transaction" className="h-[250px] w-[330px] object-cover md:h-[300px] md:w-[380px]" />
                 </div>
                 <div className="absolute left-0 top-[140px] z-30 overflow-hidden">
-                  <img src="/brand/who%20sells%202.jpg" alt="Fashion studio" className="h-[280px] w-[290px] object-cover md:h-[340px] md:w-[350px]" />
+                  <img src="/brand/Who%20sells%202.jpeg" alt="Fashion studio" className="h-[280px] w-[290px] object-cover md:h-[340px] md:w-[350px]" />
                 </div>
                 <div className="absolute bottom-0 right-0 z-10 overflow-hidden">
-                  <img src="/brand/Who%20sells%203.jpg" alt="Home-based vendor" className="h-[180px] w-[300px] object-cover md:h-[210px] md:w-[360px]" />
+                  <img src="/brand/who%20sell%203.jpeg" alt="Home-based vendor" className="h-[180px] w-[300px] object-cover md:h-[210px] md:w-[360px]" />
                 </div>
               </div>
             </div>
